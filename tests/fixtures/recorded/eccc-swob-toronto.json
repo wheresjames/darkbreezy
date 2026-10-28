@@ -1,0 +1,1834 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "id": "2026-10-28-0910-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:10:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0909-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:09:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0908-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:08:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0907-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:07:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0906-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:06:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0905-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:05:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0904-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:04:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0903-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:03:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0902-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:02:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0901-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:01:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0900-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:00:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0900-CXTO-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T09:00:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62,
+    "mslp": 1027.5
+   }
+  },
+  {
+   "id": "2026-10-28-0900-CYYZ-MAN-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.6306,
+     43.6767,
+     173.4
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "Toronto/Pearson International",
+    "obs_date_tm": "2026-10-28T09:00:00.000Z",
+    "air_temp": 9.5,
+    "rel_hum": 67,
+    "avg_wnd_spd_10m_pst10mts": 3.2,
+    "avg_wnd_dir_10m_pst10mts": 66,
+    "max_wnd_gst_spd_10m_pst10mts": null,
+    "mslp": 1027.8,
+    "vis": 24.14
+   }
+  },
+  {
+   "id": "2026-10-28-0900-CYTZ-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.3962,
+     43.6274,
+     76.8
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "Billy Bishop Toronto City Airpor",
+    "obs_date_tm": "2026-10-28T09:00:00.000Z",
+    "air_temp": 10.9,
+    "rel_hum": 66,
+    "avg_wnd_spd_10m_pst10mts": 18.4,
+    "avg_wnd_dir_10m_pst10mts": 83,
+    "max_wnd_gst_spd_10m_pst10mts": 29.5,
+    "mslp": 1027.4
+   }
+  },
+  {
+   "id": "2026-10-28-0859-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:59:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0858-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:58:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0857-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:57:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0856-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:56:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0855-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:55:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0854-on-mto-roncr23-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.33861,
+     43.77,
+     180
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "CR-23 Hwy 404/401",
+    "obs_date_tm": "2026-10-28T08:54:31.000Z",
+    "air_temp": 10.3,
+    "rel_hum": 71,
+    "mslp": null
+   }
+  },
+  {
+   "id": "2026-10-28-0854-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:54:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0853-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:53:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0852-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:52:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0851-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:51:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0850-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:50:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0849-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:49:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0848-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:48:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0847-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:47:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0846-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:46:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 61
+   }
+  },
+  {
+   "id": "2026-10-28-0845-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:45:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 61
+   }
+  },
+  {
+   "id": "2026-10-28-0844-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:44:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 61
+   }
+  },
+  {
+   "id": "2026-10-28-0843-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:43:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0842-on-mto-roncr23-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.33861,
+     43.77,
+     180
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "CR-23 Hwy 404/401",
+    "obs_date_tm": "2026-10-28T08:42:32.000Z",
+    "air_temp": 10.3,
+    "rel_hum": 69,
+    "mslp": null
+   }
+  },
+  {
+   "id": "2026-10-28-0842-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:42:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0841-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:41:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0840-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:40:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0839-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:39:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0838-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:38:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0837-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:37:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0836-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:36:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0835-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:35:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0834-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:34:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0833-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:33:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0832-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:32:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0831-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:31:00.000Z",
+    "air_temp": 10.8,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0830-on-mto-roncr23-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.33861,
+     43.77,
+     180
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "CR-23 Hwy 404/401",
+    "obs_date_tm": "2026-10-28T08:30:30.000Z",
+    "air_temp": 10.2,
+    "rel_hum": 70,
+    "mslp": null
+   }
+  },
+  {
+   "id": "2026-10-28-0830-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:30:00.000Z",
+    "air_temp": 10.8,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0829-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:29:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0828-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:28:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0827-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:27:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0826-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:26:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0825-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:25:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0824-on-mto-roncr23-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.33861,
+     43.77,
+     180
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "CR-23 Hwy 404/401",
+    "obs_date_tm": "2026-10-28T08:24:30.000Z",
+    "air_temp": 10.2,
+    "rel_hum": 70,
+    "mslp": null
+   }
+  },
+  {
+   "id": "2026-10-28-0824-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:24:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0823-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:23:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0822-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:22:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0821-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:21:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0820-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:20:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0819-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:19:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0818-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:18:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0817-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:17:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0816-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:16:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0815-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:15:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0814-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:14:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0813-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:13:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0812-on-mto-roncr23-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.33861,
+     43.77,
+     180
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "CR-23 Hwy 404/401",
+    "obs_date_tm": "2026-10-28T08:12:29.000Z",
+    "air_temp": 10.1,
+    "rel_hum": 71,
+    "mslp": null
+   }
+  },
+  {
+   "id": "2026-10-28-0812-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:12:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0811-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:11:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0810-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:10:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0809-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:09:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0808-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:08:00.000Z",
+    "air_temp": 10.7,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0807-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:07:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0806-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:06:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0805-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:05:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0804-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:04:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0803-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:03:00.000Z",
+    "air_temp": 10.6,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0802-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:02:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0801-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:01:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0800-on-mto-roncr23-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.33861,
+     43.77,
+     180
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "CR-23 Hwy 404/401",
+    "obs_date_tm": "2026-10-28T08:00:30.000Z",
+    "air_temp": 10,
+    "rel_hum": 71,
+    "mslp": null
+   }
+  },
+  {
+   "id": "2026-10-28-0800-CYYZ-MAN-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.6306,
+     43.6767,
+     173.4
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "Toronto/Pearson International",
+    "obs_date_tm": "2026-10-28T08:00:00.000Z",
+    "air_temp": 9.3,
+    "rel_hum": 69,
+    "max_wnd_gst_spd_10m_pst10mts": null,
+    "mslp": 1027.7,
+    "vis": 24.14
+   }
+  },
+  {
+   "id": "2026-10-28-0800-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:00:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0800-CYTZ-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.3962,
+     43.6274,
+     76.8
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "Billy Bishop Toronto City Airpor",
+    "obs_date_tm": "2026-10-28T08:00:00.000Z",
+    "air_temp": 10.9,
+    "rel_hum": 66,
+    "avg_wnd_spd_10m_pst10mts": 20.5,
+    "avg_wnd_dir_10m_pst10mts": 86,
+    "max_wnd_gst_spd_10m_pst10mts": 31.7,
+    "mslp": 1027.5
+   }
+  },
+  {
+   "id": "2026-10-28-0800-CXTO-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T08:00:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63,
+    "mslp": 1027.6
+   }
+  },
+  {
+   "id": "2026-10-28-0759-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:59:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0758-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:58:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 62
+   }
+  },
+  {
+   "id": "2026-10-28-0757-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:57:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0756-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:56:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0755-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:55:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0754-on-mto-roncr23-AUTO-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.33861,
+     43.77,
+     180
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "CR-23 Hwy 404/401",
+    "obs_date_tm": "2026-10-28T07:54:31.000Z",
+    "air_temp": 10,
+    "rel_hum": 72,
+    "mslp": null
+   }
+  },
+  {
+   "id": "2026-10-28-0754-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:54:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0753-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:53:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0752-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:52:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0751-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:51:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 63
+   }
+  },
+  {
+   "id": "2026-10-28-0750-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:50:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0749-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:49:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0748-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:48:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0747-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:47:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0746-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:46:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0745-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:45:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 64
+   }
+  },
+  {
+   "id": "2026-10-28-0744-CXTO-AUTO-minute-swob.xml",
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.395,
+     43.665,
+     113.5
+    ]
+   },
+   "properties": {
+    "stn_nam-value": "TORONTO CITY",
+    "obs_date_tm": "2026-10-28T07:44:00.000Z",
+    "air_temp": 10.5,
+    "rel_hum": 64
+   }
+  }
+ ],
+ "numberMatched": 103,
+ "numberReturned": 100,
+ "links": [],
+ "timeStamp": "2026-10-28T09:11:20.618516Z"
+}

@@ -1,0 +1,7 @@
+/* The not-found page (404.html), with the theme tokens. */
+.notfound { display: flex; align-items: center; justify-content: center; padding: var(--sp-4); }
+.nf-page { max-width: 34rem; }
+.nf-page h1 { margin: var(--sp-5) 0 var(--sp-3); font-size: 1.8rem; }
+.nf-page code { overflow-wrap: anywhere; }
+.nf-home { display: inline-flex; align-items: center; gap: var(--sp-2); color: var(--text); font-weight: 700; text-decoration: none; }
+.nf-home img { border-radius: 9px; }

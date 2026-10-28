@@ -1,0 +1,36 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "osm_type": "W",
+    "osm_id": 1475419804,
+    "osm_key": "amenity",
+    "osm_value": "mobility_hub",
+    "type": "house",
+    "name": "Rathausstraße/Berliner Fernsehturm",
+    "street": "Rathausstraße",
+    "locality": "Spandauer Vorstadt",
+    "district": "Mitte",
+    "city": "Berlin",
+    "country": "Germany",
+    "postcode": "10178",
+    "countrycode": "DE",
+    "extent": [
+     13.4102101,
+     52.5199031,
+     13.4104691,
+     52.5197744
+    ]
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     13.4103396,
+     52.5198388
+    ]
+   }
+  }
+ ]
+}

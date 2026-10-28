@@ -1,0 +1,27 @@
+{
+ "latitude": -33.875,
+ "longitude": 151.29167,
+ "generationtime_ms": 0.18775463104248047,
+ "utc_offset_seconds": 39600,
+ "timezone": "Australia/Sydney",
+ "timezone_abbreviation": "GMT+11",
+ "elevation": 69,
+ "current_units": {
+  "time": "unixtime",
+  "interval": "seconds",
+  "wave_height": "m",
+  "wave_direction": "°",
+  "wave_period": "s",
+  "swell_wave_height": "m",
+  "sea_surface_temperature": "°C"
+ },
+ "current": {
+  "time": 1793178000,
+  "interval": 900,
+  "wave_height": 0.94,
+  "wave_direction": 153,
+  "wave_period": 6.55,
+  "swell_wave_height": 0.84,
+  "sea_surface_temperature": 18.8
+ }
+}

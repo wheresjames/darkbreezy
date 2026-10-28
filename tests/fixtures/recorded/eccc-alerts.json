@@ -1,0 +1,398 @@
+{
+ "point": {
+  "lat": 53.22,
+  "lon": -112.25
+ },
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "id": "192039627612558214202610270519_fea1-2155",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -112.0507431,
+       53.30887985
+      ],
+      [
+       -112.05075836,
+       53.33798981
+      ],
+      [
+       -112.05077362,
+       53.35834885
+      ],
+      [
+       -112.05075073,
+       53.35895538
+      ],
+      [
+       -112.05075073,
+       53.35927963
+      ],
+      [
+       -112.05077078,
+       53.35941743
+      ],
+      [
+       -112.05078125,
+       53.35948944
+      ],
+      [
+       -112.05075073,
+       53.36694336
+      ],
+      [
+       -112.07507324,
+       53.36695099
+      ],
+      [
+       -112.09087372,
+       53.36695099
+      ],
+      [
+       -112.09940338,
+       53.36696243
+      ],
+      [
+       -112.11547089,
+       53.36696625
+      ],
+      [
+       -112.12365723,
+       53.36697006
+      ],
+      [
+       -112.13999939,
+       53.36698532
+      ],
+      [
+       -112.14795685,
+       53.36698151
+      ],
+      [
+       -112.16459656,
+       53.36697388
+      ],
+      [
+       -112.16459656,
+       53.38256976
+      ],
+      [
+       -112.16459656,
+       53.39599228
+      ],
+      [
+       -112.18921661,
+       53.39599991
+      ],
+      [
+       -112.21385193,
+       53.39599609
+      ],
+      [
+       -112.23607023,
+       53.39599296
+      ],
+      [
+       -112.2387085,
+       53.39599228
+      ],
+      [
+       -112.26351166,
+       53.39603805
+      ],
+      [
+       -112.26344329,
+       53.40790777
+      ],
+      [
+       -112.26334381,
+       53.42516708
+      ],
+      [
+       -112.28810883,
+       53.4251709
+      ],
+      [
+       -112.2940979,
+       53.4250679
+      ],
+      [
+       -112.30355072,
+       53.42503738
+      ],
+      [
+       -112.32601166,
+       53.42507553
+      ],
+      [
+       -112.33759308,
+       53.42517471
+      ],
+      [
+       -112.35389785,
+       53.42517522
+      ],
+      [
+       -112.36052704,
+       53.42517471
+      ],
+      [
+       -112.36059184,
+       53.42644943
+      ],
+      [
+       -112.36200714,
+       53.45426941
+      ],
+      [
+       -112.38604736,
+       53.45433426
+      ],
+      [
+       -112.41020203,
+       53.45423126
+      ],
+      [
+       -112.43466949,
+       53.45417023
+      ],
+      [
+       -112.43488312,
+       53.45423126
+      ],
+      [
+       -112.49978638,
+       53.45426178
+      ],
+      [
+       -112.50760651,
+       53.45430756
+      ],
+      [
+       -112.50763702,
+       53.3668251
+      ],
+      [
+       -112.49880524,
+       53.36690935
+      ],
+      [
+       -112.48874664,
+       53.36700439
+      ],
+      [
+       -112.4895401,
+       53.192276
+      ],
+      [
+       -112.48956299,
+       53.16316604
+      ],
+      [
+       -112.4881134,
+       53.13184738
+      ],
+      [
+       -112.4885788,
+       53.10495377
+      ],
+      [
+       -112.46517944,
+       53.10497665
+      ],
+      [
+       -112.46375227,
+       53.10497748
+      ],
+      [
+       -112.44078064,
+       53.1049881
+      ],
+      [
+       -112.41638946,
+       53.10499573
+      ],
+      [
+       -112.39201355,
+       53.10500336
+      ],
+      [
+       -112.36763001,
+       53.10499573
+      ],
+      [
+       -112.34320831,
+       53.10499573
+      ],
+      [
+       -112.31887054,
+       53.10499954
+      ],
+      [
+       -112.31886292,
+       53.07590866
+      ],
+      [
+       -112.31884003,
+       53.04679871
+      ],
+      [
+       -112.31881741,
+       53.01813545
+      ],
+      [
+       -112.31881715,
+       53.01779556
+      ],
+      [
+       -112.30704073,
+       53.01779314
+      ],
+      [
+       -112.30213928,
+       53.01779175
+      ],
+      [
+       -112.29445648,
+       53.01779556
+      ],
+      [
+       -112.27794647,
+       53.01779556
+      ],
+      [
+       -112.2700882,
+       53.01778793
+      ],
+      [
+       -112.25376129,
+       53.0177803
+      ],
+      [
+       -112.24572754,
+       53.01777649
+      ],
+      [
+       -112.22958374,
+       53.01776505
+      ],
+      [
+       -112.22136688,
+       53.01775741
+      ],
+      [
+       -112.20539856,
+       53.01774979
+      ],
+      [
+       -112.19700623,
+       53.01773834
+      ],
+      [
+       -112.18122101,
+       53.01772308
+      ],
+      [
+       -112.17263031,
+       53.0177269
+      ],
+      [
+       -112.15698242,
+       53.01773834
+      ],
+      [
+       -112.15527359,
+       53.01773915
+      ],
+      [
+       -112.15527354,
+       53.01773915
+      ],
+      [
+       -112.14826965,
+       53.01774216
+      ],
+      [
+       -112.13275146,
+       53.01773834
+      ],
+      [
+       -112.12391663,
+       53.01773834
+      ],
+      [
+       -112.10852814,
+       53.01773834
+      ],
+      [
+       -112.0995636,
+       53.01774216
+      ],
+      [
+       -112.08872625,
+       53.0176466
+      ],
+      [
+       -112.0870285,
+       53.01763153
+      ],
+      [
+       -112.08262634,
+       53.0176239
+      ],
+      [
+       -112.05776977,
+       53.01758575
+      ],
+      [
+       -112.052742,
+       53.01757812
+      ],
+      [
+       -112.0504303,
+       53.01757431
+      ],
+      [
+       -112.0507431,
+       53.30887985
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "alert_code": "SPS",
+    "alert_type": "statement",
+    "alert_name_en": "special weather statement",
+    "alert_name_fr": "bulletin météorologique spécial",
+    "alert_short_name_en": "Special weather",
+    "alert_short_name_fr": "Météorologique spécial",
+    "publication_datetime": "2026-10-27T19:23:30.705Z",
+    "expiration_datetime": "2026-10-28T11:23:30.705Z",
+    "validity_datetime": "2026-10-27T19:20:00.000Z",
+    "event_end_datetime": "2026-10-29T14:20:00.000Z",
+    "alert_text_en": "The first significant snowfall of the year is expected.\n\nA long duration snowfall event is expected through parts of central Alberta beginning this evening and persisting until Thursday morning. Total snowfall amounts may reach 15 cm. \n\nAllow extra time for travel.\n\nPrepare for quickly changing and deteriorating road conditions.\n\nThere may be a significant impact on rush hour traffic.\n\nPlease continue to monitor alerts and forecasts issued by Environment Canada. To report severe weather, send an email to ABstorm@ec.gc.ca, call 1-800-239-0484 or post reports on social media using #ABStorm.",
+    "alert_text_fr": "On prévoit le premier important épisode de neige de l'année.\n\nOn prévoit un long épisode de neige sur certaines parties du centre de l'Alberta de ce soir jusqu'à jeudi matin. La quantité totale de neige pourrait atteindre 15 cm.\n\nVeuillez prévoir plus de temps pour vos déplacements.\n\nPréparez-vous à composer avec des conditions routières qui changent et se détériorent rapidement.\n\nIl pourrait y avoir des répercussions importantes sur la circulation à l'heure de pointe.\n\nVeuillez continuer à surveiller les alertes et les prévisions émises par Environnement Canada. Pour signaler du temps violent, envoyez un courriel à meteoAB@ec.gc.ca, appelez au 1-800-239-0484 ou publiez un message sur les réseaux sociaux en utilisant #ABMeteo.",
+    "risk_colour_en": null,
+    "risk_colour_fr": null,
+    "confidence_en": null,
+    "confidence_fr": null,
+    "impact_en": null,
+    "impact_fr": null,
+    "feature_name_en": "Beaver Co. near Holden and Ryley",
+    "feature_name_fr": "cté de Beaver près de Holden et Ryley",
+    "province": "AB",
+    "status_en": "issued",
+    "status_fr": "émis",
+    "feature_id": "fea1-2155"
+   }
+  }
+ ],
+ "numberMatched": 1,
+ "numberReturned": 1,
+ "links": [],
+ "timeStamp": "2026-10-28T09:11:20.359093Z"
+}

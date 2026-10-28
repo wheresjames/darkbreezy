@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Dark Breezy: a night sky tile, the moon, and two lines of breeze. -->
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1430"/><stop offset="1" stop-color="#2c3b78"/></linearGradient></defs>
+<rect width="64" height="64" rx="14" fill="url(#g)"/>
+<path d="M36 11a17 17 0 1 0 15 25A14 14 0 0 1 36 11Z" fill="#eadfb4"/>
+<g fill="none" stroke="#9fd4ff" stroke-width="4" stroke-linecap="round"><path d="M9 45h30a6 6 0 1 0-6-6"/><path d="M15 54h20a5 5 0 1 1-5 5" opacity=".75"/></g>
+</svg>

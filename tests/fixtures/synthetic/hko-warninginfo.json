@@ -1,0 +1,4 @@
+{"details": [
+ {"contents": ["The Red Rainstorm Warning Signal was issued at 9:15 a.m.", "Heavy rain has fallen or is expected to fall generally over Hong Kong."], "warningStatementCode": "WRAIN", "subtype": "WRAINR", "updateTime": "2026-10-28T09:15:00+08:00"},
+ {"contents": ["Strong Wind Signal No. 3 is in force."], "warningStatementCode": "WTCSGNL", "subtype": "TC3", "updateTime": "2026-10-28T09:00:00+08:00"}
+]}

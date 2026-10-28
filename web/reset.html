@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; frame-src blob:; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Refresh Dark Breezy</title>
+<meta name="color-scheme" content="light dark">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script defer src="js/reset.js"></script>
+</head>
+<body>
+<main class="reset-page">
+  <h1>Refresh Dark Breezy</h1>
+  <p>For when Dark Breezy won't start or looks broken. This fetches every file of the app again, straight from the server, and clears its offline copy. Your settings and places are kept.</p>
+  <ol id="reset-steps" class="reset-steps" aria-live="polite"></ol>
+  <p id="reset-done" class="reset-done" hidden><a class="btn btn-primary" id="reset-open" href="./#/">Open Dark Breezy</a></p>
+  <section id="reset-more" class="reset-more" hidden>
+    <h2>Still not working?</h2>
+    <p>Erase everything Dark Breezy keeps in this browser and start over: settings, your places and saved weather.</p>
+    <p><button type="button" class="btn" id="reset-erase">Erase Dark Breezy's data in this browser</button></p>
+  </section>
+  <noscript><p>This page needs JavaScript. Clearing this site's data in your browser's settings does the same.</p></noscript>
+</main>
+</body>
+</html>

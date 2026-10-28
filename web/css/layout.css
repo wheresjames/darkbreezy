@@ -1,0 +1,284 @@
+/* The page: header bar, main column, footer, and the dashboard's hero and
+   card grid (one column on phones, two from 720 px, three from 1100 px). */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: calc(var(--sp-2) + env(safe-area-inset-top)) var(--sp-3) var(--sp-2);
+}
+.has-sky .app-header { color: var(--on-sky); }
+.brand { display: flex; align-items: center; gap: var(--sp-2); color: inherit; text-decoration: none; font-weight: 700; letter-spacing: -0.01em; }
+.brand img { width: 28px; height: 28px; border-radius: 7px; }
+.place-button {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  min-width: 0;
+  min-height: 40px;
+  margin-left: var(--sp-2);
+  padding: 0 var(--sp-3);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--chip-bg);
+  color: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.place-button:hover { border-color: var(--border-strong); }
+.place-button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.header-actions { display: flex; align-items: center; margin-left: auto; }
+.header-actions .is-favorite { color: #f7c443; }
+
+.page { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--sp-3) var(--sp-6); container: page / inline-size; }
+main:focus { outline: none; }
+
+.app-footer {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: var(--sp-5) var(--sp-3) calc(var(--sp-5) + env(safe-area-inset-bottom));
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+.has-sky .app-footer { color: var(--on-sky-muted); }
+.app-footer a { color: inherit; }
+.footer-links { display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); margin: 0 0 var(--sp-2); padding: 0; list-style: none; }
+
+/* Text straight on the sky: dark on bright skies, light on dark ones. */
+/* Text straight on the sky: dark on bright skies, light on dark ones. Each
+   has a two-layer shadow (a crisp edge, then a soft glow) and a scrim, a
+   faint patch of the opposite tone behind the hero, so it reads on clouds
+   and the bright bottom of the gradient too. */
+:root {
+  --on-sky: #ffffff;
+  --on-sky-muted: rgba(255, 255, 255, 0.92);
+  --on-sky-shadow: 0 1px 2px rgba(0, 10, 40, 0.45), 0 0 24px rgba(0, 10, 40, 0.35);
+  --on-sky-scrim: rgba(8, 14, 34, 0.38);
+}
+:root[data-sky="light"] {
+  --on-sky: #0b1430;
+  --on-sky-muted: rgba(11, 20, 48, 0.86);
+  --on-sky-shadow: 0 1px 1px rgba(255, 255, 255, 0.5), 0 0 22px rgba(255, 255, 255, 0.55);
+  --on-sky-scrim: rgba(255, 255, 255, 0.5);
+}
+:root[data-theme="contrast"] { --on-sky: #ffffff; --on-sky-muted: #ffffff; --on-sky-shadow: none; --on-sky-scrim: transparent; }
+
+/* Hero: a tile like the cards (same padding, corners, border and spacing),
+   but see-through: the temperature stays written on the sky, over a scrim
+   that keeps it readable. */
+.hero-side {
+  padding: var(--sp-4);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: radial-gradient(ellipse 95% 85% at 30% 36%, var(--on-sky-scrim), transparent 100%);
+}
+.hero { color: var(--on-sky); text-shadow: var(--on-sky-shadow); }
+.hero-place { margin: 0 0 var(--sp-1); font-size: 1.05rem; font-weight: 600; color: var(--on-sky); }
+.hero-main { display: flex; align-items: center; gap: var(--sp-4); }
+.hero-temp { display: inline-grid; font-size: clamp(4.5rem, 18vw, 7.5rem); font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -0.04em; }
+/* Room for two digits, measured in whatever font the system gives (an invisible "88°" in the
+   same cell): the icon stays put from 9° to 76°. */
+.hero-temp::after { content: "88°"; content: "88°" / ""; grid-area: 1 / 1; height: 0; overflow: hidden; visibility: hidden; }
+.hero-icon { width: clamp(72px, 20vw, 110px); height: clamp(72px, 20vw, 110px); filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25)); }
+.hero-condition { margin: var(--sp-2) 0 0; font-size: 1.35rem; font-weight: 500; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); margin-top: var(--sp-1); color: var(--on-sky-muted); font-weight: 500; }
+.hero-summary { margin-top: var(--sp-3); font-size: 1.05rem; font-weight: 500; }
+.hero-summary p { margin: 0; }
+.updated { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin-top: var(--sp-4); color: var(--on-sky-muted); font-size: var(--fs-sm); font-weight: 500; text-shadow: var(--on-sky-shadow); }
+.updated .icon-btn { width: 32px; height: 32px; color: inherit; }
+.updated .is-loading .icon { animation: spin 1s linear infinite; }
+
+/* Cards: one column on phones; from 720 px, packed masonry-style
+   (js/widgets/masonry.js gives each card a row span from its height, and
+   later small cards fill holes higher up). The breakpoints follow the
+   page's width (container queries), so the page width setting picks the
+   layout too. From about 1500 px it's a "war room":
+   as many 300 px columns as fit, the hero is one cell among the cards, and
+   wide cards span three columns instead of all, so a full screen shows
+   every card. */
+.grid { --row: 4px; display: grid; grid-template-columns: 1fr; gap: var(--sp-3); align-items: start; }
+.hero-cell { grid-column: 1 / -1; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-3); }
+.hero-side { min-width: 0; }
+/* The map takes whatever the hero leaves: beside it once there's room, under it on phones. */
+@container page (min-width: 600px) {
+  .hero-cell.has-map { grid-template-columns: minmax(20rem, max-content) minmax(0, 1fr); align-items: stretch; }
+  /* Only the temperature and icon set the hero's width; the text wraps. So going from place
+     to place (a longer name, one digit or two) doesn't push the map and cards about. */
+  .hero-cell.has-map .hero > :not(.hero-main), .hero-cell.has-map .updated { contain: inline-size; }
+
+}
+@container page (min-width: 700px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid > .wide { grid-column: 1 / -1; }
+  .grid.masonry { grid-auto-rows: var(--row); row-gap: 0; }
+  .grid.masonry > .fill { align-self: stretch; margin-bottom: var(--sp-3); }
+  .grid.masonry-native { grid-template-rows: masonry; }
+}
+@container page (min-width: 1080px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid > .span2 { grid-column: span 2; }
+}
+@container page (min-width: 1470px) {
+  .grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+  .grid.masonry > .fill { margin-bottom: 10px; }
+  .hero-cell { gap: 10px; }
+  .hero-cell { grid-column: auto; }
+  .hero-cell.has-map { grid-column: span 2; }
+  .hero-cell .hero-temp { font-size: 5.5rem; }
+  .hero-cell .hero-icon { width: 84px; height: 84px; }
+  .grid > .wide { grid-column: span 3; }
+  .grid > .card-warnings.no-alerts-card { grid-column: auto; }
+  .grid > .card-warnings.has-alerts { grid-column: span 2; }
+  /* 300 px is enough for the 10-day list; spanning two would cut a band edge. */
+  .grid > .card-daily { grid-column: auto; }
+}
+
+/* Plain pages (search, settings, about): a centered column. */
+.sheet { max-width: 44rem; margin: 0 auto; padding-top: var(--sp-3); }
+.sheet > h1 { font-size: 1.6rem; margin: var(--sp-3) 0 var(--sp-4); }
+.sheet h2 { font-size: 1.1rem; margin: var(--sp-5) 0 var(--sp-2); }
+
+/* Banners: storage refused, an update ready. */
+.banners { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--sp-3); }
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin: var(--sp-2) 0;
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--card-solid);
+  font-size: var(--fs-sm);
+}
+.banner p { margin: 0; flex: 1; }
+
+/* Large-screen ("wall") layout, js/views/dashboard.js and views/wall.js:
+   exactly the window's height below the header. Warnings in effect across
+   the top, a band of feature tiles taking the height that's left, and the
+   other cards ("instruments") along the bottom at their natural size. */
+body.wall-mode .page { padding-bottom: 0; }
+.wall {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* At least the window's height below the header (26 px: the data credit's line). Big
+     screens fit everything, and the feature band grows to fill what's left; smaller ones
+     (from 1800 × 900) give the band at least 45% of the window and scroll to the rest. */
+  min-height: calc(100dvh - var(--header-h, 56px) - 26px);
+}
+.wall-alerts { flex: none; }
+.feature-band { flex: 1 1 0; min-height: max(280px, 45vh); display: grid; gap: 10px; container: band / size; }
+.feature-pair { display: flex; gap: 10px; min-width: 0; min-height: 0; }
+.feature-pair > .feature-map { flex: 5 1 0; }
+.feature-pair > .feature-radar { flex: 4 1 0; }
+/* A tall band (big screens, 4K): the map is wide, so map over radar suits both better. */
+@container band (min-height: 900px) {
+  .feature-pair { flex-direction: column; }
+  .feature-pair > .feature-map { flex: 1 1 0; }
+  .feature-pair > .feature-radar { flex: 1.2 1 0; }
+}
+.feature { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
+.feature > .card { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+/* Very small (the layout forced on): a tile clips its own content rather than spill onto the next. */
+.feature-now { overflow: hidden; }
+.feature .card-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.grid.instruments { flex: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.grid.instruments.masonry { grid-auto-rows: var(--row); row-gap: 0; }
+.grid.instruments > .wide, .grid.instruments > .span2 { grid-column: auto; }
+.grid.instruments > .card-warnings.has-alerts, .grid.instruments > .card-discussion { grid-column: span 2; }
+
+/* Now: the hero, its type sized by its tile (container query units). */
+.feature-now { container-type: size; justify-content: space-between; }
+.feature-now .hero-side { height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+.feature-now .hero-place { font-size: clamp(1.1rem, 3.2cqh, 2rem); }
+.feature-now .hero-main { gap: 3cqw; }
+.feature-now .hero-temp { font-size: clamp(3.5rem, min(28cqh, 40cqw), 22rem); }
+.feature-now .hero-icon { width: clamp(48px, min(22cqh, 28cqw), 320px); height: clamp(48px, min(22cqh, 28cqw), 320px); }
+.feature-now .hero-condition { font-size: clamp(1.35rem, min(5cqh, 9cqw), 3.4rem); }
+.feature-now .hero-meta, .feature-now .hero-summary { font-size: clamp(1rem, min(3.2cqh, 6cqw), 2.2rem); }
+.feature-now .updated { font-size: clamp(0.8rem, 1.8cqh, 1.1rem); }
+
+/* Map, radar: fill their tiles. Forecast: hourly on top, 10 days below, rows spread out. */
+.feature-map > .card-map { flex: 1 1 auto; }
+.feature-radar .radar-frame { flex: 1 1 auto; height: auto; min-height: 160px; }
+.feature-time > .card { flex: 1 1 0; }
+.hourly-fit { flex: 1 1 auto; min-height: 0; display: flex; }
+.hourly-fit .chart { width: 100%; height: 100%; }
+.feature-time .days { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; flex-wrap: wrap; align-content: flex-start; justify-content: space-between; }
+/* Days that don't fit wrap into a second column, off to the side and out of sight: whole rows only. */
+.feature-time .day { width: 100%; }
+.feature-time .card-note { display: none; }
+.feature-time > .card-daily { flex-grow: 1.3; }
+/* Rows share the card's height; text and icons follow the band's height (cqh), so short bands stay tidy. */
+.feature-time .day { flex: 1 0 22px; min-height: 22px; padding: 0; grid-template-rows: 100%; font-size: clamp(0.8rem, 2.4cqh, 1.4rem); }
+/* A short tile shows fewer days, each still readable: the ones that don't fit are left off. */
+.feature-time .card-daily .card-body { overflow: hidden; }
+.feature-time .day-icon { width: auto; height: 100%; max-height: 2.2em; aspect-ratio: 1; }
+
+/* The footer as one line at the end: the window's bottom edge on big screens, after the
+   cards where the page scrolls. The links and copyright on the left, the data credit on the right. */
+body.wall-mode .app-footer { display: flex; align-items: center; gap: var(--sp-4); max-width: none; height: 26px; padding: 5px var(--sp-3); line-height: 16px; overflow: hidden; font-size: var(--fs-xs); white-space: nowrap; }   /* 26 px: what .wall leaves it */
+body.wall-mode .footer-links, body.wall-mode .footer-credit, body.wall-mode #copyright { margin: 0; }
+body.wall-mode .footer-links { flex-wrap: nowrap; }
+body.wall-mode .footer-credit { order: 1; margin-left: auto; }
+/* Wallpaper mode: nobody clicks, so no links; the credit and copyright stay. */
+body.wallpaper .footer-links { display: none; }
+
+/* Wallpaper mode (js/views/wallpaper.js): dimmed by a black layer over
+   everything that clicks pass through, never darker than 90 %; no header and
+   no controls (nobody can click them); the credit stays. */
+html[data-wallpaper]::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  background: #000;
+  opacity: var(--dim, 0.4);
+  pointer-events: none;
+}
+body.wallpaper #header, body.wallpaper #banners { display: none; }
+body.wallpaper { cursor: none; }
+body.wallpaper .rotate-btn,
+body.wallpaper .radar-controls,
+body.wallpaper .radar-loading,
+body.wallpaper .card-error .btn,
+body.wallpaper .updated .icon-btn,
+body.wallpaper .alert-chevron,
+body.wallpaper .discussion { display: none; }
+body.wallpaper .wall { padding-top: var(--sp-3); min-height: calc(100dvh - 26px); }
+/* The way out (Esc or double-click), above the dimming. */
+.wallpaper-bar {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  z-index: 2147483647;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--card-solid);
+  box-shadow: var(--shadow);
+  cursor: auto;
+}
+/* Fitted to the window (js/views/wall.js fitToScreen): laid out wider than the window and scaled down. */
+.wall.fit {
+  width: calc(100% / var(--fit, 1));
+  height: var(--wall-h);
+  min-height: 0;
+  transform: scale(var(--fit, 1));
+  transform-origin: 0 0;
+}
+.wall.fit .feature-band { min-height: max(280px, calc(var(--wall-h) * 0.45)); }
+/* The transform only scales what's seen: the frame keeps the window's height, so nothing scrolls. */
+.dashboard:has(> .wall.fit) { height: calc(100dvh - var(--header-h, 56px) - 26px); overflow: hidden; }
+body.wallpaper .dashboard:has(> .wall.fit) { height: calc(100dvh - 26px); }
+.feature-radar .radar-loading { display: none; }   /* the frame time and "Latest/−min" already say how far it's got */

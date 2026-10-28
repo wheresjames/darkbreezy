@@ -1,0 +1,178 @@
+/* The plain pages: welcome, search, settings, about. */
+
+.welcome { padding-top: var(--sp-6); }
+.welcome h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); }
+.welcome-actions { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-5); }
+
+/* Header extras */
+.fav-strip { position: relative; z-index: 1; display: flex; gap: var(--sp-2); max-width: var(--page-max); margin: 0 auto; padding: 0 var(--sp-3) var(--sp-2); overflow-x: auto; scrollbar-width: none; }
+.fav-chip { flex: none; padding: 4px 12px; border-radius: 999px; background: var(--chip-bg); color: inherit; font-size: var(--fs-sm); text-decoration: none; }
+.has-sky .fav-chip { color: var(--on-sky); }
+.fav-chip[aria-current="page"] { background: var(--accent); color: var(--accent-text); font-weight: 600; }
+/* Fading out at an edge where there are more chips to scroll to (widgets/common.js scrollStrip). */
+.fav-strip { --fade: 40px; }
+.fav-strip.fade-end { mask-image: linear-gradient(to right, #000 calc(100% - var(--fade)), transparent); }
+.fav-strip.fade-start { mask-image: linear-gradient(to right, transparent, #000 var(--fade)); }
+.fav-strip.fade-start.fade-end { mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent); }
+.brand-name { display: none; }
+@media (min-width: 640px) { .brand-name { display: inline; } }
+
+/* Search */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-3);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--bg-raised);
+}
+.search-box:focus-within { border-color: var(--accent); }
+.search-input { flex: 1; min-width: 0; height: 48px; border: 0; background: transparent; font-size: 1.05rem; }
+.search-input:focus { outline: none; }
+.search-modes { display: flex; gap: var(--sp-2); margin: var(--sp-3) 0; }
+.search-modes .selected { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.search-status { min-height: 1.5em; }
+.error-text { color: var(--error-text); }
+.results { margin: 0 0 var(--sp-4); padding: 0; list-style: none; }
+.result { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-2) var(--sp-3); border-radius: var(--radius-sm); color: inherit; text-decoration: none; }
+.results li.active .result { background: var(--chip-bg); }
+.result-flag { width: 1.6em; font-size: 1.3em; text-align: center; }
+.result-text { display: flex; flex-direction: column; }
+.result-text .muted { font-size: var(--fs-sm); }
+
+.fav-list { margin: 0; padding: 0; list-style: none; }
+.fav { display: flex; align-items: center; gap: var(--sp-2); padding: var(--sp-1) 0; border-bottom: 1px solid var(--border); }
+.fav-name { flex: 1; min-width: 0; color: inherit; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; }
+.fav-home { margin-left: var(--sp-2); padding: 1px 8px; border-radius: 999px; background: var(--chip-bg); color: var(--text-muted); font-size: var(--fs-xs); }
+.fav-actions { display: flex; }
+.fav-actions .icon-btn[disabled] { opacity: 0.3; cursor: default; }
+
+/* Settings (js/views/settings.js): groups as panels, one row per
+   setting, name and hint on the left, control on the right. */
+.settings-page { max-width: 48rem; }
+.settings-group {
+  margin: 0 0 var(--sp-4);
+  padding: var(--sp-2) var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+}
+.settings-group h2 { margin: var(--sp-3) 0 var(--sp-1); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.group-head { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
+.group-head h2 { margin-bottom: var(--sp-3); }
+.group-hint { margin: 0 0 var(--sp-2); }
+
+.setting { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2) var(--sp-5); padding: var(--sp-3) 0; border-top: 1px solid var(--border); }
+.settings-group h2 + .setting { border-top: 0; }
+.setting-text { flex: 1 1 14rem; min-width: 0; }
+.setting-name { display: block; font-weight: 600; }
+.setting-hint { margin: 2px 0 0; color: var(--text-muted); font-size: var(--fs-sm); line-height: 1.35; }
+.setting-control { flex: 0 1 auto; display: flex; justify-content: flex-end; min-width: 0; }
+.setting-value { color: var(--text-muted); font-size: var(--fs-sm); text-align: right; }
+.setting-actions { align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+/* A row that belongs to the one above it (custom units, map label parts). */
+.setting-sub { padding-left: var(--sp-4); border-top-style: dashed; }
+.setting-sub .setting-name { font-weight: 500; }
+.setting.is-disabled .setting-text { opacity: 0.5; }
+.setting-stack { flex-direction: column; align-items: stretch; }
+.setting-stack .setting-text { flex: none; }
+@media (max-width: 560px) {
+  .setting { flex-direction: column; align-items: stretch; }
+  .setting-text { flex: none; }
+  /* A switch stays beside its name. */
+  .setting.setting-inline { flex-direction: row; align-items: center; }
+  .setting.setting-inline .setting-text { flex: 1; }
+  .setting-control { justify-content: flex-start; }
+  .setting-control .segmented { width: 100%; }
+}
+
+/* Segmented buttons: radios drawn as one bar. */
+.segmented { display: inline-flex; flex-wrap: wrap; padding: 3px; border-radius: 12px; background: var(--chip-bg); }
+.segment { position: relative; flex: 1 0 auto; }
+.segment input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.segment span { display: block; padding: 6px 12px; border-radius: 9px; font-size: var(--fs-sm); font-weight: 500; text-align: center; white-space: nowrap; color: var(--text-muted); }
+.segment input:checked + span { background: var(--accent); color: var(--accent-text); font-weight: 600; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+.segment input:hover:not(:checked):not(:disabled) + span { color: var(--text); }
+.segment input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 1px; }
+.segment input:disabled + span { opacity: 0.5; }
+
+/* Dropdowns */
+.select {
+  max-width: 100%;
+  height: 36px;
+  padding: 0 var(--sp-3);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--bg-raised);
+  font-size: var(--fs-sm);
+}
+
+/* Switches: a checkbox drawn as a sliding toggle. */
+.switch {
+  appearance: none;
+  position: relative;
+  flex: none;
+  width: 42px;
+  height: 24px;
+  margin: 0;
+  border-radius: 12px;
+  background: var(--border-strong);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); transition: transform 0.15s; }
+.switch:checked { background: var(--accent); }
+.switch:checked::after { transform: translateX(18px); }
+.switch:disabled { opacity: 0.4; cursor: default; }
+
+/* Chips: checkboxes drawn as toggles, for picking several. */
+.chips { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--sp-2); }
+.chip { position: relative; }
+.chip input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.chip span { display: block; padding: 5px 12px; border: 1px solid var(--border-strong); border-radius: 999px; font-size: var(--fs-sm); white-space: nowrap; }
+.chip input:checked + span { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 22%, transparent); font-weight: 600; }
+.chip input:checked + span::before { content: "✓ "; }
+.chip input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 1px; }
+.chip input:disabled + span { opacity: 0.5; }
+@media (max-width: 560px) { .chips { justify-content: flex-start; } }
+
+/* Cards list */
+.widget-list { margin: 0 0 var(--sp-2); padding: 0; list-style: none; }
+.widget-row { display: flex; align-items: center; justify-content: space-between; min-height: 44px; border-top: 1px solid var(--border); }
+.widget-name { display: flex; align-items: center; gap: var(--sp-3); cursor: pointer; }
+.widget-row.is-off .widget-name span { color: var(--text-muted); }
+.widget-move { display: flex; }
+.widget-move .icon-btn { width: 36px; height: 36px; }
+.widget-move .icon-btn[disabled] { opacity: 0.25; cursor: default; }
+
+/* Advanced: a collapsed group. */
+.advanced summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; }
+.advanced summary::-webkit-details-marker { display: none; }
+.advanced summary h2 { margin-bottom: var(--sp-3); }
+.advanced-chevron { color: var(--text-muted); transition: transform 0.15s; }
+.advanced[open] .advanced-chevron { transform: rotate(180deg); }
+.button-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
+.error-log-box { margin-top: var(--sp-2); }
+.error-log { padding-left: 1.2em; font-size: var(--fs-sm); }
+.error-log li { margin-bottom: var(--sp-1); overflow-wrap: anywhere; }
+
+/* About */
+.sources { margin: 0; }
+.source { padding: var(--sp-2) 0; border-bottom: 1px solid var(--border); }
+.source dt { font-weight: 600; }
+.source dd { margin: 0; font-size: var(--fs-sm); }
+
+
+/* Settings from the address, the dim slider, the wallpaper address. */
+.settings-notice { margin: 0 0 var(--sp-4); padding: var(--sp-3) var(--sp-4); border: 1px solid var(--accent); border-radius: var(--radius-sm); background: color-mix(in srgb, var(--accent) 12%, transparent); font-size: var(--fs-sm); }
+.range-field { display: flex; align-items: center; gap: var(--sp-3); min-width: 14rem; }
+.range { flex: 1; accent-color: var(--accent); }
+.range-value { min-width: 3em; text-align: right; font-variant-numeric: tabular-nums; color: var(--text-muted); }
+.url-field { display: flex; gap: var(--sp-2); margin-top: var(--sp-2); }
+.url { flex: 1; min-width: 0; height: 36px; padding: 0 var(--sp-3); border: 1px solid var(--border-strong); border-radius: 10px; background: var(--bg); font: var(--fs-sm) ui-monospace, monospace; }
+
+/* A setting this page's address sets (util/params.js): dimmed and off until the page is opened without it. */
+fieldset.setting-control, fieldset.widget-fields { border: 0; margin: 0; padding: 0; min-inline-size: 0; }
+.setting.from-url .setting-control, .settings-group.from-url .widget-list { opacity: 0.5; }
+.from-url-note { font-style: italic; }

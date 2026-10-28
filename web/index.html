@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https://tilecache.rainviewer.com https://gibs.earthdata.nasa.gov; connect-src 'self' https://api.open-meteo.com https://air-quality-api.open-meteo.com https://geocoding-api.open-meteo.com https://marine-api.open-meteo.com https://api.weather.gov https://api.weather.gc.ca https://api.brightsky.dev https://www.jma.go.jp https://mreversegeocoder.gsi.go.jp https://data.weather.gov.hk https://www.gdacs.org https://services.swpc.noaa.gov https://api.rainviewer.com https://tilecache.rainviewer.com https://photon.komoot.io https://nominatim.openstreetmap.org; font-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src blob:; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<title>Dark Breezy</title>
+<meta name="description" content="A fast, private weather dashboard. No accounts, no ads, no tracking.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef3fa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1226">
+<script src="js/theme-init.js"></script>
+<link rel="preload" href="assets/fonts/inter-5.3-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/sky.css">
+<link rel="stylesheet" href="css/widgets.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/update.css">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="header"></header>
+<div id="banners" class="banners"></div>
+<div class="page">
+  <main id="main" tabindex="-1">
+    <noscript>
+      <div class="error-box">
+        <h1>Dark Breezy needs JavaScript</h1>
+        <p>Dark Breezy is a weather dashboard that runs entirely in your browser, so it needs JavaScript turned on.</p>
+      </div>
+    </noscript>
+  </main>
+</div>
+<footer id="footer"></footer>
+</body>
+</html>

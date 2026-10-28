@@ -1,0 +1,27 @@
+{
+ "latitude": 52.541664,
+ "longitude": 13.375015,
+ "generationtime_ms": 0.14781951904296875,
+ "utc_offset_seconds": 3600,
+ "timezone": "Europe/Berlin",
+ "timezone_abbreviation": "GMT+1",
+ "elevation": 38,
+ "current_units": {
+  "time": "unixtime",
+  "interval": "seconds",
+  "wave_height": "m",
+  "wave_direction": "°",
+  "wave_period": "s",
+  "swell_wave_height": "m",
+  "sea_surface_temperature": "°C"
+ },
+ "current": {
+  "time": 1793178000,
+  "interval": 900,
+  "wave_height": null,
+  "wave_direction": null,
+  "wave_period": null,
+  "swell_wave_height": null,
+  "sea_surface_temperature": null
+ }
+}

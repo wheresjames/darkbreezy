@@ -1,0 +1,134 @@
+{
+  "format": 1,
+  "requires": [
+    "always"
+  ],
+  "about": "Serving rules for Dark Breezy (DARKBREEZY.md §5), in srvcfg's format (srvcfg/docs/server.md), for hosting on a server of our own (Hetzner, later). GitHub Pages ignores this file: there the CSP is the <meta> in index.html. Dark Breezy uses hash routes (#/place/...), so no SPA fallback is needed; 404.html sends place paths that lost their # back into the app. This file stays outside the public web root.",
+  "site": "../web",
+  "patterns": {
+    "paths": "Paths are relative to the web root, with / between folders and no leading /.",
+    "order": "The first matching rule applies.",
+    "*": "Matches within one path component.",
+    "**": "Matches across path components.",
+    "noSlash": "A pattern without / matches a file name in any folder.",
+    "withSlash": "A pattern with / matches the whole path.",
+    "case": "Sensitive."
+  },
+  "notFound": "404.html",
+  "folderIndex": "index.html",
+  "etag": {
+    "prefer": "content",
+    "accept": [
+      "mtime-size"
+    ],
+    "note": "Send ETags and answer If-None-Match with 304. Content hashes are preferred; mtime-size requires preserving build file times."
+  },
+  "precompressed": [],
+  "publish": {
+    "last": [
+      "deployment.json"
+    ],
+    "note": "Upload every other file first, including the new file list. Replace deployment.json atomically, then purge it from any CDN."
+  },
+  "always": {
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "no-referrer",
+      "X-Frame-Options": "DENY",
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "Cross-Origin-Resource-Policy": "same-origin",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=(self), payment=(), usb=()"
+    },
+    "note": "no-referrer: the weather services don't need to know which page you were on. geolocation=(self): \"Use my location\" (only when tapped)."
+  },
+  "rules": [
+    {
+      "match": [
+        "deployment.json"
+      ],
+      "headers": {
+        "Cache-Control": "no-store"
+      }
+    },
+    {
+      "match": [
+        "files-*.json"
+      ],
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "match": [
+        "data/**"
+      ],
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      },
+      "note": "Self-hosted static data with the version in its name (jma-areas-v1.json): a change is a new file."
+    },
+    {
+      "match": [
+        "*.html"
+      ],
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https://tilecache.rainviewer.com https://gibs.earthdata.nasa.gov; connect-src 'self' https://api.open-meteo.com https://air-quality-api.open-meteo.com https://geocoding-api.open-meteo.com https://marine-api.open-meteo.com https://api.weather.gov https://api.weather.gc.ca https://api.brightsky.dev https://www.jma.go.jp https://mreversegeocoder.gsi.go.jp https://data.weather.gov.hk https://www.gdacs.org https://services.swpc.noaa.gov https://api.rainviewer.com https://tilecache.rainviewer.com https://photon.komoot.io https://nominatim.openstreetmap.org; font-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src blob:; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
+      },
+      "note": "The same policy as the <meta> in index.html, plus frame-ancestors, which works only as a header. connect-src and img-src name each weather service and tile host (DARKBREEZY.md §5): adding a source means adding it here and in index.html. frame-src blob: is for the cache buster's hidden page (cache-bust.js refreshMemory), which reloads Firefox's in-memory copies of stylesheets and images."
+    },
+    {
+      "match": [
+        "*.js",
+        "*.css",
+        "*.json",
+        "*.webmanifest",
+        "*.txt"
+      ],
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
+    },
+    {
+      "match": [
+        "*.png",
+        "*.jpg",
+        "*.jpeg",
+        "*.gif",
+        "*.webp",
+        "*.svg",
+        "*.ico",
+        "*.woff",
+        "*.woff2"
+      ],
+      "headers": {
+        "Cache-Control": "public, max-age=3600"
+      }
+    },
+    {
+      "match": [
+        "**"
+      ],
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
+    }
+  ],
+  "types": {
+    ".html": "text/html; charset=utf-8",
+    ".js": "text/javascript; charset=utf-8",
+    ".css": "text/css; charset=utf-8",
+    ".json": "application/json; charset=utf-8",
+    ".webmanifest": "application/manifest+json; charset=utf-8",
+    ".txt": "text/plain; charset=utf-8",
+    ".svg": "image/svg+xml",
+    ".ico": "image/x-icon",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".gif": "image/gif",
+    ".webp": "image/webp",
+    ".woff": "font/woff",
+    ".woff2": "font/woff2"
+  }
+}

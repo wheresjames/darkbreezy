@@ -1,0 +1,8 @@
+name            darkbreezy
+version         1.0.0
+description     A fast, private weather dashboard that runs entirely in the browser.
+company         wheresjames
+author          Robert Umbehant
+email           darkbreezy@wheresjames.com
+url             https://github.com/wheresjames/darkbreezy
+license         MIT

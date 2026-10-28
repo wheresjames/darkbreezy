@@ -1,0 +1,22 @@
+{
+ "@graph": [
+  {
+   "@id": "https://api.weather.gov/products/5e25a373-2e44-4df9-9048-c0d5a01bcfe8",
+   "id": "5e25a373-2e44-4df9-9048-c0d5a01bcfe8",
+   "wmoCollectiveId": "FXUS61",
+   "issuingOffice": "KOKX",
+   "issuanceTime": "2026-10-28T06:14:00+00:00",
+   "productCode": "AFD",
+   "productName": "Area Forecast Discussion"
+  },
+  {
+   "@id": "https://api.weather.gov/products/25a15cec-d439-48fa-9c7f-47553f7a6dd3",
+   "id": "25a15cec-d439-48fa-9c7f-47553f7a6dd3",
+   "wmoCollectiveId": "FXUS61",
+   "issuingOffice": "KOKX",
+   "issuanceTime": "2026-10-28T02:43:00+00:00",
+   "productCode": "AFD",
+   "productName": "Area Forecast Discussion"
+  }
+ ]
+}

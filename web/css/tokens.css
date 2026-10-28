@@ -1,0 +1,160 @@
+/* Theme tokens. Auto follows the system; Light, Dark and High contrast are
+   forced with html[data-theme] (js/theme-init.js, before first paint).
+   Dark is the brand's own look. Severity and category colors are the same
+   in every theme; they always sit on a card or chip of their own. */
+
+/* Inter (rsms.me/inter, SIL Open Font License: assets/fonts/OFL.txt), self-hosted, one
+   variable file for every weight. The same look and the same line breaks everywhere,
+   rather than each system's own font. Latin first (preloaded in index.html); the
+   extended Latin file only loads for a page that has such letters (Łódź). Anything else
+   (Japanese, Arabic...) falls through to the system's fonts. "optional": used if it's
+   there in time, so the text never reflows once drawn; from the second visit it's cached. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url("../assets/fonts/inter-5.3-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url("../assets/fonts/inter-5.3-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+:root {
+  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fs-sm: 0.8125rem;
+  --fs-xs: 0.75rem;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --radius: 18px;
+  --radius-sm: 10px;
+  --page-max: none;          /* Settings › Page width; no limit by default */
+
+  --sev-extreme: #a3122b;
+  --sev-severe: #d9412b;
+  --sev-moderate: #e8901c;
+  --sev-minor: #d8b51e;
+  --sev-unknown: #7d8797;
+  --lvl-0: #3fae5a;
+  --lvl-1: #d6c22a;
+  --lvl-2: #ef8f1f;
+  --lvl-3: #df3b35;
+  --lvl-4: #9b3fb3;
+  --lvl-5: #7a1f33;
+
+  --temp-cold: #5aa7ff;
+  --temp-mild: #f6c445;
+  --temp-hot: #f0653a;
+  --rain: #3d8fe0;
+
+  color-scheme: dark;
+  --bg: #0b1226;
+  --bg-alt: #121b36;
+  --bg-raised: #17213f;
+  --text: #eef2fb;
+  --text-muted: #a9b4cc;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --accent: #7cc4ff;
+  --accent-text: #06203a;
+  --link: #8fd0ff;
+  --card-bg: rgba(10, 16, 36, 0.55);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --card-solid: #141d3a;
+  --chip-bg: rgba(255, 255, 255, 0.08);
+  --overlay: rgba(4, 8, 20, 0.6);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --focus: #ffd75e;
+
+  /* Names the shared pages (update dialog, reset, 404) use. */
+  --header-bg: var(--bg-alt);
+  --header-border: var(--accent);
+  --header-text: var(--text);
+  --title-link: var(--text);
+  --meta-link: var(--link);
+  --nsfw: var(--sev-severe);
+  --success: var(--lvl-0);
+  --error-text: #ff8b7a;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+    --bg: #eef3fa;
+    --bg-alt: #e2eaf5;
+    --bg-raised: #ffffff;
+    --text: #0e1730;
+    --text-muted: #4c5875;
+    --border: rgba(10, 25, 60, 0.1);
+    --border-strong: rgba(10, 25, 60, 0.22);
+    --accent: #1f6fd1;
+    --accent-text: #ffffff;
+    --link: #1959b0;
+    --card-bg: rgba(255, 255, 255, 0.68);
+    --card-border: rgba(255, 255, 255, 0.7);
+    --card-solid: #ffffff;
+    --chip-bg: rgba(10, 25, 60, 0.06);
+    --overlay: rgba(14, 23, 48, 0.4);
+    --shadow: 0 10px 30px rgba(20, 40, 90, 0.18);
+    --focus: #b35c00;
+    --error-text: #b3261e;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef3fa;
+  --bg-alt: #e2eaf5;
+  --bg-raised: #ffffff;
+  --text: #0e1730;
+  --text-muted: #4c5875;
+  --border: rgba(10, 25, 60, 0.1);
+  --border-strong: rgba(10, 25, 60, 0.22);
+  --accent: #1f6fd1;
+  --accent-text: #ffffff;
+  --link: #1959b0;
+  --card-bg: rgba(255, 255, 255, 0.68);
+  --card-border: rgba(255, 255, 255, 0.7);
+  --card-solid: #ffffff;
+  --chip-bg: rgba(10, 25, 60, 0.06);
+  --overlay: rgba(14, 23, 48, 0.4);
+  --shadow: 0 10px 30px rgba(20, 40, 90, 0.18);
+  --focus: #b35c00;
+  --error-text: #b3261e;
+}
+
+/* Dark is the default above; forcing it only pins it against a light system. */
+:root[data-theme="dark"] { color-scheme: dark; }
+
+/* High contrast: solid cards, black and white, no transparency anywhere. */
+:root[data-theme="contrast"] {
+  color-scheme: dark;
+  --bg: #000000;
+  --bg-alt: #000000;
+  --bg-raised: #000000;
+  --text: #ffffff;
+  --text-muted: #e6e6e6;
+  --border: #ffffff;
+  --border-strong: #ffffff;
+  --accent: #ffe14d;
+  --accent-text: #000000;
+  --link: #ffe14d;
+  --card-bg: #000000;
+  --card-border: #ffffff;
+  --card-solid: #000000;
+  --chip-bg: #1a1a1a;
+  --overlay: rgba(0, 0, 0, 0.85);
+  --shadow: none;
+  --focus: #00e5ff;
+  --error-text: #ff8b7a;
+}

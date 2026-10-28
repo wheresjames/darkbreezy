@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<!-- Served at whatever address wasn't found, so every path is from the
+     site's root (server.json's policy allows no <base>). -->
+<title>Page not found · Dark Breezy</title>
+<meta name="color-scheme" content="dark light">
+<script src="/js/404.js"></script>
+<script src="/js/theme-init.js"></script>
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/notfound.css">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="notfound">
+<main class="nf-page">
+  <a class="nf-home" href="/#/"><img src="/assets/favicon.svg" alt="" width="40" height="40"><span>Dark Breezy</span></a>
+  <h1>Page not found</h1>
+  <p>There's nothing at <code id="nf-path">this address</code>.</p>
+  <p class="muted">Dark Breezy's pages have a <code>#</code> in their address, like <code>darkbreezy.com/#/place/52.52,13.41/Berlin</code>.</p>
+  <p><a class="btn btn-primary" href="/#/">Open the dashboard</a> <a class="btn" href="/#/search">Find a place</a></p>
+</main>
+</body>
+</html>

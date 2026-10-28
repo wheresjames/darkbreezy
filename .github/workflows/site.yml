@@ -1,0 +1,153 @@
+# Test every push and pull request; deploy the default branch to GitHub Pages.
+# Actions are pinned to commits (the tag they were, beside each): a moved tag
+# can't change what runs here. Update them by looking up the tag again.
+#
+# One-time setup on GitHub: Settings › Pages › Build and deployment › Source:
+# "GitHub Actions". With a custom domain (Settings › Pages › Custom domain),
+# the site is at its root; without one it's at /<repository>/, which the
+# build is told (-b) for its not-found page.
+
+name: Test and deploy
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Unit tests
+        run: npm test
+
+  # The end-to-end tests, split into jobs that run side by side: each
+  # browser, against the source (web/) and a fresh build (dist/web), each
+  # in shards (Playwright's --shard) - SHARDS below and the shard list match.
+  e2e:
+    name: E2E (${{ matrix.site }}, ${{ matrix.browser }}, ${{ matrix.shard }}/2)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        site: [web, dist]
+        browser: [chromium, firefox]
+        shard: [1, 2]
+    env:
+      CI: true
+      SHARDS: 2
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # The browsers, kept between runs for the Playwright version in
+      # package-lock.json; the system packages they need are installed
+      # every time (they're not in the cache).
+      - name: Cache browsers
+        id: browsers
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ matrix.browser }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install the browser
+        if: steps.browsers.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Install the browser's system packages
+        if: steps.browsers.outputs.cache-hit == 'true'
+        run: npx playwright install-deps ${{ matrix.browser }}
+
+      # The build's minifiers, kept between runs (scripts/build.sh pins them).
+      - name: Cache the build's tools
+        if: matrix.site == 'dist'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/wheresjames-tools
+          key: wj-tools-${{ runner.os }}-${{ hashFiles('scripts/build.sh') }}
+
+      - name: Build
+        if: matrix.site == 'dist'
+        run: ./scripts/build.sh -c -q
+
+      - name: End-to-end tests
+        env:
+          DARKBREEZY_E2E_ROOT: ${{ matrix.site == 'dist' && 'dist/web' || 'web' }}
+        run: npx playwright test --project=${{ matrix.browser }} --shard=${{ matrix.shard }}/${{ env.SHARDS }}
+
+      - name: Keep the test report
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: playwright-report-${{ matrix.site }}-${{ matrix.browser }}-${{ matrix.shard }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: [unit, e2e]
+    # Only the default branch, and not from pull requests.
+    if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # One deployment at a time; a newer one waits rather than cutting this off.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Build
+        # Pages compresses on its own (no -z). base_path is empty with a
+        # custom domain, /<repository> without one.
+        run: |
+          BASE="${{ steps.pages.outputs.base_path }}"
+          ./scripts/build.sh -c ${BASE:+-b "$BASE"}
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: dist/web
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

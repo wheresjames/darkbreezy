@@ -1,0 +1,183 @@
+{
+ "point": {
+  "lat": 17.91,
+  "lon": -67.16
+ },
+ "@context": [
+  "https://geojson.org/geojson-ld/geojson-context.jsonld",
+  {
+   "@version": "1.1",
+   "wx": "https://api.weather.gov/ontology#",
+   "@vocab": "https://api.weather.gov/ontology#"
+  }
+ ],
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.6152176a25d8e774df1360cc403462554f81ffc6.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -68,
+       18.46
+      ],
+      [
+       -67.55,
+       18.45
+      ],
+      [
+       -67.16,
+       18.21
+      ],
+      [
+       -67.21,
+       18.04
+      ],
+      [
+       -67.17,
+       18.02
+      ],
+      [
+       -67.21,
+       17.99
+      ],
+      [
+       -67.19,
+       17.93
+      ],
+      [
+       -67.02,
+       17.98
+      ],
+      [
+       -66.92,
+       17.93
+      ],
+      [
+       -66.93,
+       17.94
+      ],
+      [
+       -66.92,
+       17.98
+      ],
+      [
+       -66.92,
+       17.97
+      ],
+      [
+       -66.78,
+       17.98
+      ],
+      [
+       -66.8,
+       18
+      ],
+      [
+       -66.64,
+       17.9
+      ],
+      [
+       -66.59,
+       17.05
+      ],
+      [
+       -67.02,
+       17
+      ],
+      [
+       -68,
+       17
+      ],
+      [
+       -68,
+       18.46
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.6152176a25d8e774df1360cc403462554f81ffc6.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.6152176a25d8e774df1360cc403462554f81ffc6.001.1",
+    "areaDesc": "Caribbean Waters of Puerto Rico from 10 NM to 17N, including the Coastal Waters of Saint Croix; Coastal Waters of Southern Puerto Rico out 10 NM; Mona Passage Southward to 17N; Coastal Waters OF Northwestern Puerto Rico out 10 NM; Coastal Waters OF Southwestern Puerto Rico out 10 NM",
+    "geocode": {
+     "SAME": [
+      "075733",
+      "075735",
+      "075741",
+      "075742",
+      "075745"
+     ],
+     "UGC": [
+      "AMZ733",
+      "AMZ735",
+      "AMZ741",
+      "AMZ742",
+      "AMZ745"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/forecast/AMZ733",
+     "https://api.weather.gov/zones/forecast/AMZ735",
+     "https://api.weather.gov/zones/forecast/AMZ741",
+     "https://api.weather.gov/zones/forecast/AMZ742",
+     "https://api.weather.gov/zones/forecast/AMZ745"
+    ],
+    "references": [],
+    "sent": "2026-10-28T03:04:00-04:00",
+    "effective": "2026-10-28T03:04:00-04:00",
+    "onset": "2026-10-28T03:04:00-04:00",
+    "expires": "2026-10-28T06:00:00-04:00",
+    "ends": null,
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Minor",
+    "certainty": "Observed",
+    "urgency": "Expected",
+    "event": "Marine Weather Statement",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS San Juan PR",
+    "headline": "Marine Weather Statement issued October 28 at 3:04AM AST by NWS San Juan PR",
+    "description": "The areas affected include...\nCaribbean waters of Puerto Rico from 10 NM to 17N, including the\ncoastal waters of Saint Croix...\nCoastal Waters of Southern Puerto Rico out 10 NM...\nMona Passage Southward to 17N...\nCoastal Waters of Northwestern Puerto Rico out 10 NM...\nCoastal Waters of Southwestern Puerto Rico out 10 NM...\n\n* At 304 AM AST, Doppler radar indicated strong thunderstorms,\ncapable of producing winds to around 30 knots. These strong\nthunderstorms were located over the Mona Channel and in the\nCaribbean waters of southwestern Puerto Rico, and are nearly\nstationary.\n\nLocations impacted include...\nMainly open waters of Caribbean waters of Puerto Rico from 10 NM to\n17N, including the coastal waters of Saint Croix, Coastal Waters of\nSouthern Puerto Rico out 10 NM, Mona Passage Southward to 17N,\nCoastal Waters of Northwestern Puerto Rico out 10 NM and Coastal\nWaters of Southwestern Puerto Rico out 10 NM.",
+    "instruction": "Report severe weather to the Coast Guard or nearest law enforcement\nagency. They will relay your report to the National Weather Service\noffice.",
+    "response": "Monitor",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "MWSSJU"
+     ],
+     "WMOidentifier": [
+      "FZCA72 TJSJ 280704"
+     ],
+     "eventMotionDescription": [
+      "2026-10-28T07:03:00-00:00...storm...279DEG...2KT...17.91,-68.03 17.66,-67.9 16.96,-67.97"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "NWS"
+     ],
+     "NationalWeatherService": [
+      "MWS"
+     ]
+    }
+   }
+  }
+ ],
+ "title": "Current watches, warnings, and advisories for 17.91 N, 67.16 W",
+ "updated": "2026-10-28T09:05:16+00:00"
+}

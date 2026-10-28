@@ -1,0 +1,8 @@
+{"reportDatetime": "2026-10-28T16:00:00+09:00", "publishingOffice": "気象庁", "headlineText": "東京地方では、28日夜遅くまで土砂災害に警戒してください。",
+ "areaTypes": [
+  {"areas": [{"code": "130010", "warnings": [{"code": "03", "status": "発表"}]}]},
+  {"areas": [
+   {"code": "1311300", "warnings": [{"code": "03", "status": "発表"}, {"code": "14", "status": "継続"}, {"code": "15", "status": "解除"}]},
+   {"code": "1310100", "warnings": [{"status": "発表警報・注意報はなし"}]}
+  ]}
+ ]}

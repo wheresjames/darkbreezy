@@ -1,0 +1,52 @@
+/* The updater's progress dialog (js/update.js). Uses the theme tokens, so
+   it follows Auto/Light/Dark. Kept in its own file so a refresh of the app
+   files restyles it too. */
+
+.ol-update {
+  width: min(400px, calc(100vw - 32px));
+  max-width: none;
+  padding: 0;
+  margin: auto;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  overflow: visible;
+}
+.ol-update::backdrop { background: var(--overlay); backdrop-filter: blur(4px); }
+.ol-update:not([open]) { display: none; }
+.ol-update-panel {
+  padding: 20px 22px 18px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-strong);
+  border-top: 4px solid var(--header-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  font: 13px/1.45 var(--font-ui);
+}
+.ol-update-head { display: flex; align-items: center; gap: 8px; margin: 0; }
+.ol-update-mark { width: 28px; height: 28px; flex: none; }
+.ol-update-brand { font-weight: bold; color: var(--meta-link); }
+.ol-update-version {
+  margin-left: auto;
+  max-width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.ol-update-title { margin: 16px 0 14px; font-size: 20px; font-weight: normal; }
+.ol-update-bar { height: 12px; padding: 2px; border: 1px solid var(--border-strong); border-radius: 7px; background: var(--bg-alt); overflow: hidden; }
+.ol-update-fill { height: 100%; width: 0; border-radius: 4px; background: var(--accent); transition: width 0.15s linear; }
+.ol-update-status { display: flex; justify-content: space-between; gap: 12px; margin: 8px 0 0; color: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.ol-update-percent { flex: none; color: var(--meta-link); font-weight: bold; }
+.ol-update.is-waiting .ol-update-fill { width: 100%; animation: ol-update-pulse 1.4s ease-in-out infinite; }
+.ol-update.is-failed .ol-update-fill { background: var(--nsfw); }
+.ol-update.is-failed .ol-update-percent { color: var(--nsfw); }
+@keyframes ol-update-pulse { 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) {
+  .ol-update.is-waiting .ol-update-fill { animation: none; }
+  .ol-update-fill { transition: none; }
+}

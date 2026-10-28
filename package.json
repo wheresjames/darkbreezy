@@ -1,0 +1,21 @@
+{
+  "name": "darkbreezy",
+  "private": true,
+  "description": "A fast, private weather dashboard that runs entirely in the browser. The site itself has no build step and no runtime dependencies; this file is for development tools only.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "serve": "node scripts/serve.mjs web 8000",
+    "build": "./scripts/build.sh -c",
+    "test": "node --test 'tests/unit/*.test.mjs'",
+    "test:e2e": "playwright test",
+    "test:e2e:dist": "./scripts/build.sh -c -q && DARKBREEZY_E2E_ROOT=dist/web playwright test",
+    "fixtures": "node scripts/record-fixtures.mjs",
+    "check-sources": "node scripts/check-sources.mjs",
+    "screenshots": "README_SHOTS=1 playwright test readme-screenshots --project=chromium",
+    "test:ci": "scripts/test-ci.sh"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

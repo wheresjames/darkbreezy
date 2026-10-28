@@ -1,0 +1,75 @@
+/* The still sky behind the dashboard (js/sky/sky.js sets the variables).
+   Everything here is drawn once: gradients only, no images, nothing that
+   moves. High contrast has no sky at all. */
+
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 55%, var(--sky-bottom) 100%);
+  pointer-events: none;
+}
+.sky > div { position: absolute; inset: 0; }
+
+/* Stars: a few fixed fields of dots, fading toward the horizon. */
+.sky-stars {
+  opacity: var(--sky-stars);
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 27% 8%, #fff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 41% 26%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 58% 12%, #fff 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 73% 30%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 86% 9%, #fff 50%, transparent 51%),
+    radial-gradient(1.6px 1.6px at 93% 22%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 5% 38%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 33% 44%, #fff 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 66% 46%, #fff 50%, transparent 51%);
+  background-size: 420px 420px;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 85%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 85%);
+}
+
+/* Clouds: soft overlapping blobs, brighter by day, grey under rain. */
+.sky-clouds {
+  opacity: var(--sky-clouds);
+  --cloud: rgba(255, 255, 255, 0.55);
+  --cloud-shade: rgba(255, 255, 255, 0.28);
+  background:
+    radial-gradient(40% 18% at 18% 16%, var(--cloud), transparent 70%),
+    radial-gradient(35% 14% at 52% 10%, var(--cloud-shade), transparent 70%),
+    radial-gradient(45% 20% at 84% 22%, var(--cloud), transparent 70%),
+    radial-gradient(50% 16% at 34% 36%, var(--cloud-shade), transparent 70%),
+    radial-gradient(40% 14% at 72% 44%, var(--cloud-shade), transparent 70%),
+    radial-gradient(60% 18% at 50% 62%, var(--cloud-shade), transparent 75%);
+}
+.sky[data-phase="night"] .sky-clouds,
+.sky[data-phase="astro"] .sky-clouds,
+.sky[data-phase="nautical"] .sky-clouds { --cloud: rgba(150, 165, 200, 0.28); --cloud-shade: rgba(120, 135, 175, 0.18); }
+.sky[data-mood="rain"] .sky-clouds,
+.sky[data-mood="storm"] .sky-clouds { --cloud: rgba(70, 80, 100, 0.55); --cloud-shade: rgba(60, 70, 90, 0.4); }
+.sky[data-mood="fog"] .sky-clouds {
+  background: linear-gradient(180deg, transparent 10%, rgba(220, 225, 232, 0.45) 55%, rgba(220, 225, 232, 0.7) 100%);
+}
+
+/* Rain as faint slanted streaks; snow as a still scatter of flakes. */
+.sky[data-precip="rain"] .sky-precip {
+  opacity: 0.35;
+  background-image: repeating-linear-gradient(105deg, transparent 0 22px, rgba(200, 220, 255, 0.35) 22px 23px, transparent 23px 47px);
+  -webkit-mask-image: linear-gradient(180deg, transparent 15%, #000 60%);
+  mask-image: linear-gradient(180deg, transparent 15%, #000 60%);
+}
+.sky[data-precip="snow"] .sky-precip {
+  opacity: 0.8;
+  background-image:
+    radial-gradient(2px 2px at 10% 20%, #fff 50%, transparent 51%),
+    radial-gradient(2.5px 2.5px at 35% 60%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 55% 30%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 75% 75%, #fff 50%, transparent 51%),
+    radial-gradient(3px 3px at 90% 40%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 22% 85%, #fff 50%, transparent 51%);
+  background-size: 260px 260px;
+}
+
+:root[data-theme="contrast"] .sky { display: none; }
