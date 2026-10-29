@@ -9,7 +9,8 @@ export const WIDGETS = [
   ['nowcast', 'Next hours'],
   ['precip', 'Precipitation'],
   ['wind', 'Wind'],
-  ['sun', 'Sun & moon'],
+  ['sun', 'Sun'],
+  ['moon', 'Moon'],
   ['uv', 'UV index'],
   ['aqi', 'Air quality'],
   ['pollen', 'Pollen'],
@@ -34,9 +35,11 @@ export const DEFAULTS = {
   maxWidth: 'none',         // none | a width in px ('1180', '1440', ...): the page's widest
   layout: 'auto',           // auto | scroll | fit: the card grid that scrolls, or big tiles fitted to the window (views/wall.js)
   showMap: true,            // the world map beside the current conditions
-  mapLabels: { show: true, city: true, temp: true, hilo: true, time: false },   // what the map's labels show
+  mapLabels: { show: true, city: true, temp: true, hilo: false, time: true },   // what the map's labels show
   rotate: false,            // show each favorite in turn
   dwell: 30,                // seconds per place when rotating
+  alertTicker: 'auto',      // auto | always | never: warnings as the one-line ticker (widgets/alert-bar.js); auto: in the Fit layout
+  quietLast: true,          // no warnings in effect: their card goes last, not where it is in the order
   radarAutoplay: true,      // loop the radar's last 2 hours by itself
   wallpaper: false,         // only from the address (?wallpaper=1, views/wallpaper.js); never stored as true
   dim: 40,                  // how much wallpaper mode darkens the screen, 0–90 % (the built address's default)

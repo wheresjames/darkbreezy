@@ -142,3 +142,24 @@ test.describe('card order', () => {
     expect(ids.indexOf('nowcast')).toBeGreaterThan(ids.indexOf('daily'));
   });
 });
+
+test('cards that are off: their data isn\'t fetched; switched on, it is', async ({ page, context }) => {
+  await page.addInitScript(() => {
+    if (!sessionStorage.getItem('seeded')) {
+      localStorage.setItem('darkbreezy:settings', JSON.stringify({ v: 5, data: { hidden: ['aqi', 'pollen', 'marine'] } }));
+      sessionStorage.setItem('seeded', '1');
+    }
+  });
+  const asked = [];
+  page.on('request', (r) => { if (/air-quality-api|marine-api/.test(r.url())) asked.push(new URL(r.url()).host); });
+  await openPlace(page, 'berlin');
+  await expect(page.locator('.card-loading')).toHaveCount(0);
+  await expect(page.locator('.card-aqi')).toHaveCount(0);
+  expect(asked).toEqual([]);
+  // Air quality switched on in another tab (settings follow across tabs): fetched then, no reload.
+  const other = await context.newPage();
+  await other.goto('./#/settings');
+  await other.getByRole('switch', { name: 'Air quality' }).check();
+  await expect(page.locator('.card-aqi')).toContainText(/\d/);
+  expect(asked).toEqual(['air-quality-api.open-meteo.com']);
+});

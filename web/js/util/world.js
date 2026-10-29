@@ -61,19 +61,27 @@ const overlaps = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h
  * Where each marker's label goes in a [w]×[h] px box, so none overlap each
  * other, a dot, or the edges. [markers]: [{ id, x, y, variants: [lines[], ...] }]
  * in priority order, each variant shorter than the one before (full,
- * shorter, ...). Returns id → { lines, x, y, side } or nothing for a dot
- * with no room for any label.
+ * shorter, ...). [measure]: lines → { w, h } in px (labelSize, an estimate,
+ * when the real text can't be measured). Returns id → { lines, x, y, w, h,
+ * side } or nothing for a dot with no room for any label.
  */
-export function placeLabels(markers, w, h, { dot = 7 } = {}) {
+export function placeLabels(markers, w, h, { dot = 7, measure = labelSize } = {}) {
   const taken = markers.map((m) => ({ x: m.x - dot, y: m.y - dot, w: dot * 2, h: dot * 2 }));
   const out = {};
   for (const m of markers) {
     let done = false;
     for (const lines of m.variants) {
-      const size = labelSize(lines);
+      const size = measure(lines);
+      const right = m.x + dot + 2, left = m.x - dot - 2 - size.w;
+      // Beside the dot, centered; then raised or lowered so it still touches it; then below or above.
+      const mid = m.y - size.h / 2, raised = m.y + dot - size.h, lowered = m.y - dot;
       const spots = [
-        { side: 'right', x: m.x + dot + 2, y: m.y - size.h / 2 },
-        { side: 'left', x: m.x - dot - 2 - size.w, y: m.y - size.h / 2 },
+        { side: 'right', x: right, y: mid },
+        { side: 'left', x: left, y: mid },
+        { side: 'right', x: right, y: raised },
+        { side: 'right', x: right, y: lowered },
+        { side: 'left', x: left, y: raised },
+        { side: 'left', x: left, y: lowered },
         { side: 'below', x: m.x - size.w / 2, y: m.y + dot + 2 },
         { side: 'above', x: m.x - size.w / 2, y: m.y - dot - 2 - size.h },
       ];
@@ -82,7 +90,7 @@ export function placeLabels(markers, w, h, { dot = 7 } = {}) {
         if (box.x < 0 || box.y < 0 || box.x + box.w > w || box.y + box.h > h) continue;
         if (taken.some((t) => overlaps(t, box))) continue;
         taken.push(box);
-        out[m.id] = { lines, x: box.x, y: box.y, side: s.side };
+        out[m.id] = { lines, ...box, side: s.side };
         done = true;
         break;
       }

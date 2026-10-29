@@ -1,5 +1,6 @@
-// Warnings as a thin bar, for the large-screen and wallpaper layouts
-// (views/dashboard.js), where the full card took too much room:
+// Warnings as a thin bar, a ticker: in the large-screen and wallpaper
+// layouts (views/dashboard.js), where the full card takes too much room,
+// and anywhere with Settings › Warnings › Ticker: Always.
 //
 //   [SEVERE Coastal Flood Warning · Coastal Duval · until 2 am] | (Rip Current) (High Surf)
 //    …minor to moderate flooding of low-lying property is expected…   2/4
@@ -62,14 +63,15 @@ export function pages(text, budget) {
 /** How long a page shows: its reading time, within bounds. */
 export const pageTime = (text) => Math.min(MAX_PAGE, Math.max(MIN_PAGE, String(text).split(/\s+/).length * PER_WORD));
 
-/**
- * The bar for [alerts] (most severe first). [ctx]: the card context
- * (tz, clock); [interactive]: hover pauses, click opens every warning in full.
- */
 /** Whose turn it is, by the set of warnings: a refresh with the same warnings carries on. */
 const turns = new Map();
 
-export function alertBar(alerts, ctx, { interactive = true } = {}) {
+/**
+ * The bar for [alerts] (most severe first). [ctx]: the card context
+ * (tz, clock); [interactive]: hover pauses, click opens every warning in
+ * full; [cls]: classes for where it sits (in the card grid: how wide).
+ */
+export function alertBar(alerts, ctx, { interactive = true, cls = '' } = {}) {
   const key = alerts.map((a) => a.id).join('|');
   const kept = turns.get(key);
   const current = signal(kept?.current ?? 0);
@@ -149,6 +151,7 @@ export function alertBar(alerts, ctx, { interactive = true } = {}) {
     a.url && h('p.small', h('a', { href: a.url, target: '_blank', rel: 'noopener' }, t('Official page'))))));
 
   const bar = h('section.card.card-warnings.alert-bar', {
+    class: cls,
     dataset: { widget: 'warnings' },
     'aria-label': t('Warnings ({n})', { n: alerts.length }),
     onmouseenter: interactive ? () => { paused.value = true; } : undefined,

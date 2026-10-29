@@ -1,6 +1,6 @@
 // The world map beside the current conditions: the place on screen as a
 // beacon, the favorites as dots (each a link to its dashboard) labelled
-// with the temperature and today's high/low where there's room, and the
+// with the temperature and local time where there's room, and the
 // night side shaded. It fills whatever space it's given; labels are placed
 // again whenever its size changes (util/world.js placeLabels). The land
 // is drawn from data/world-110m-v1.json (scripts/make-world-map.mjs),
@@ -55,6 +55,20 @@ export function labelVariants(name, wx, units, { fields, now = Date.now(), clock
 }
 
 /**
+ * Measures label text as .map-label draws it (12 px; the first line 600
+ * weight) in [el]'s font: lines → { w, h } in px, for placeLabels.
+ */
+function measurer(el) {
+  const ctx = document.createElement('canvas').getContext('2d');
+  if (!ctx) return undefined;
+  const family = getComputedStyle(el).fontFamily;
+  return (lines) => ({
+    w: Math.ceil(Math.max(...lines.map((l, i) => { ctx.font = `${i ? 400 : 600} 12px ${family}`; return ctx.measureText(l).width; }))) + 8,
+    h: lines.length * 15 + 2,
+  });
+}
+
+/**
  * The map card for [place] ([tz]: its time zone, when known). A view calls
  * this once; it follows the favorites, their weather, the settings and its
  * own size by itself.
@@ -76,6 +90,8 @@ export function worldMap(place, tz = () => null) {
   });
   sizes.observe(view);
   onCleanup(() => sizes.disconnect());
+  // Labels are measured in the page's font: place them again once it's loaded.
+  document.fonts?.ready.then(() => { size.value = { ...size.peek() }; });
 
   const svg = () => {
     const d = land.value;
@@ -104,11 +120,14 @@ export function worldMap(place, tz = () => null) {
       // The place on screen first: its weather is in the hero, so just its name and time.
       { id: place.id, x: here.x, y: here.y, variants: labelVariants(place.name, { tz: tz() }, units, { ...opts, fields: { ...fields, temp: false, hilo: false } }) },
       ...list.map((m) => ({ id: m.p.id, x: m.x, y: m.y, variants: labelVariants(m.p.name, byId[m.p.id], units, opts) })),
-    ], w, ht);
+    ], w, ht, { measure: measurer(view) });
     const label = (id, cls, href) => {
       const l = labels[id];
       if (!l) return null;
-      const style = { left: `${l.x}px`, top: `${l.y}px` };
+      // Held by the edge nearest its dot, so text a little wider or narrower than measured can't leave a gap.
+      const style = l.side === 'left' ? { right: `${w - l.x - l.w}px`, top: `${l.y}px` }
+        : l.side === 'right' ? { left: `${l.x}px`, top: `${l.y}px` }
+        : { left: `${l.x + l.w / 2}px`, transform: 'translateX(-50%)', ...(l.side === 'above' ? { bottom: `${ht - l.y - l.h}px` } : { top: `${l.y}px` }) };
       const lines = l.lines.map((line) => h('span', line));
       // The dot is the link for keyboards and screen readers; the label is a second way to click it.
       return href ? h(`a.map-label.${cls}`, { href, style, tabindex: -1, 'aria-hidden': 'true' }, lines) : h(`span.map-label.${cls}`, { style }, lines);

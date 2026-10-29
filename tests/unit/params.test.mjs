@@ -16,10 +16,10 @@ test('the wallpaper parameters', () => {
 });
 
 test('every kind of setting', () => {
-  const { settings: s } = parseParams('?theme=dark&units=uk&clock=24&aqi=eu&width=1440&layout=fit&map=0&rotate=1&dwell=60&radar=no&labels=city,time&hide=pollen,aurora');
+  const { settings: s } = parseParams('?theme=dark&units=uk&clock=24&aqi=eu&width=1440&layout=fit&map=0&rotate=1&dwell=60&radar=no&ticker=always&quietlast=0&labels=city,time&hide=pollen,aurora');
   assert.deepEqual(s, {
     theme: 'dark', units: 'uk', clock: '24', aqi: 'eu', maxWidth: '1440', layout: 'fit', showMap: false,
-    rotate: true, dwell: 60, radarAutoplay: false,
+    rotate: true, dwell: 60, radarAutoplay: false, alertTicker: 'always', quietLast: false,
     mapLabels: { show: true, city: true, temp: false, hilo: false, time: true },
     hidden: ['pollen', 'aurora'],
   });

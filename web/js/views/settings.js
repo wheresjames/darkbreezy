@@ -1,6 +1,7 @@
 // Settings (#/settings): theme and page width, units, time and air
-// quality, the map and rotation, which cards show and in what order, and
-// Advanced (build, refresh app files, saved data, error log, reset).
+// quality, the map and rotation, warnings, the radar, wallpaper mode,
+// which cards show and in what order, and Advanced (build, refresh app
+// files, saved data, error log, reset).
 // Changes apply at once.
 //
 // Every setting is a row: its name and a one-line hint on the left, the
@@ -19,7 +20,9 @@ import { placeHash } from '../util/place.js';
 import { cacheSize, cachedPlaces, clearCache } from '../state/cache.js';
 import { UNITS, SYSTEMS, systemFor } from '../util/units.js';
 import { installed, label, refresh } from '../update.js';
+import { makeBackup, readBackup, packLink, unpackLink, isLink } from '../util/backup.js';
 import { setTitle } from './common.js';
+import { importPanel } from './import.js';
 
 const s = () => settings.value;
 const set = (patch) => settings.update((x) => ({ ...x, ...patch }));
@@ -120,6 +123,12 @@ export function settingsView() {
     row(t('Rotate: time on each place'), t('Turn rotation on with the Rotate button on the map. It waits while you\'re using the page.'),
       segmented('dwell', DWELLS.map((n) => [String(n), n < 60 ? t('{n} s', { n }) : t('{n} min', { n: n / 60 })]), () => String(s().dwell), (v) => set({ dwell: Number(v) })), { keys: ['dwell'] }));
 
+  const warnings = group(t('Warnings'),
+    row(t('Warnings ticker'), t('One line that goes through the warnings in turn, a sentence or two at a time; click it to read them in full. Auto: in the Fit layout only, the full list of warnings otherwise.'),
+      segmented('ticker', [['auto', t('Auto')], ['always', t('Always')], ['never', t('Never')]], () => s().alertTicker, (alertTicker) => set({ alertTicker })), { keys: ['alertTicker'] }),
+    row(t('Move to the bottom when there are none'), t('With no warnings in effect, the Warnings card goes after all the others. Off: it stays where it is in your card order. While there are warnings, the card is where you put it (in the Fit layout, across the top).'),
+      toggle(() => s().quietLast, (quietLast) => set({ quietLast })), { cls: 'setting-inline', keys: ['quietLast'] }));
+
   const wallpaper = wallpaperGroup();
 
   const radar = group(t('Radar'),
@@ -137,6 +146,7 @@ export function settingsView() {
     units,
     timeAir,
     map,
+    warnings,
     radar,
     wallpaper,
     cardsGroup(),
@@ -204,10 +214,87 @@ function cardsGroup() {
     h('div.group-head',
       h('h2', t('Cards')),
       h('button.btn.btn-small', { type: 'button', disabled: locked, onclick: () => set({ order: DEFAULTS.order, hidden: [] }) }, t('Restore defaults'))),
-    h('p.setting-hint.group-hint', t('Switch cards on or off, and move them up or down. Cards with no data for a place (pollen outside Europe, say) hide by themselves, and Warnings moves to the end while none are in effect.')),
+    h('p.setting-hint.group-hint', t('Switch cards on or off, and move them up or down. Cards with no data for a place (pollen outside Europe, say) hide by themselves.')),
     locked && h('p.setting-hint.group-hint.from-url-note', t('Set by this page\'s address.')),
     // Set by the address: dimmed and off (a disabled fieldset turns off everything in it).
     locked ? h('fieldset.widget-fields', { disabled: true }, list) : list);
+}
+
+/**
+ * Back up and move (util/backup.js): everything, or the places only, out
+ * as a file, a copy or a link; in from a file or a paste (JSON or a link),
+ * confirmed before anything's saved (views/import.js).
+ */
+function backupRow() {
+  const kind = signal('everything');
+  const status = signal('');
+  const incoming = signal(/** @type {any} */ (null));
+  const pasting = signal(false);
+  const backup = () => makeBackup(settings.peek(), favorites.peek().list, kind.peek());
+  const say = (text) => { status.value = text; };
+  const fail = (e) => say(t(e.message));
+  const pick = (b) => { incoming.value = b; pasting.value = false; say(''); };
+
+  const exportFile = () => {
+    const url = URL.createObjectURL(new Blob([JSON.stringify(backup(), null, 2)], { type: 'application/json' }));
+    const a = h('a', { href: url, download: `darkbreezy-${kind.peek() === 'places' ? 'places' : 'settings'}-${new Date().toISOString().slice(0, 10)}.json` });
+    document.body.append(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    say(t('Saved to your downloads.'));
+  };
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(JSON.stringify(backup(), null, 2)); say(t('Copied. Paste it into Dark Breezy on the other device.')); } catch { say(t('Couldn\'t copy.')); }
+  };
+  const share = async () => {
+    const url = `${location.origin}${location.pathname}#/import/${await packLink(backup())}`;
+    if (navigator.share) {
+      try { await navigator.share({ title: t('Dark Breezy settings'), url }); return; } catch (e) { if (e.name === 'AbortError') return; }
+    }
+    try { await navigator.clipboard.writeText(url); say(t('Link copied. Opening it asks before changing anything.')); } catch { say(t('Couldn\'t copy.')); }
+  };
+  const fromText = async (text) => {
+    try { pick(readBackup(isLink(text) ? await unpackLink(text) : text)); } catch (e) { fail(e); }
+  };
+  const file = h('input', { type: 'file', accept: '.json,application/json', hidden: true, onchange: async (e) => {
+    const f = e.target.files?.[0];
+    e.target.value = '';
+    if (f) fromText(await f.text());
+  } });
+  const paste = async () => {
+    // Reading the clipboard can be refused (or not offered): then a box to paste into.
+    try {
+      const text = await navigator.clipboard.readText();
+      if (text.trim()) { fromText(text); return; }
+    } catch { /* the box below */ }
+    pasting.value = true;
+    say('');
+  };
+  const box = h('textarea.paste-box', { rows: 4, 'aria-label': t('Backup or link to import'), placeholder: t('Paste a backup or a link here') });
+
+  return h('div.setting.setting-stack',
+    h('div.setting-text',
+      h('span.setting-name', t('Back up and move')),
+      h('p.setting-hint', t('Take your settings and places to another browser or device, or keep a copy. A file, a copy to paste, or a link; importing always asks first. Saved weather and the error log stay here.'))),
+    segmented('backup-kind', [['everything', t('Everything')], ['places', t('Places only')]], () => kind.value, (v) => { kind.value = v; })('backup-kind'),
+    h('p.button-row',
+      h('button.btn.btn-small', { type: 'button', onclick: exportFile }, t('Export file')),
+      h('button.btn.btn-small', { type: 'button', onclick: copy }, t('Copy')),
+      h('button.btn.btn-small', { type: 'button', onclick: share }, icon('share'), t('Share link'))),
+    h('p.button-row',
+      h('button.btn.btn-small', { type: 'button', onclick: () => file.click() }, t('Import file')),
+      h('button.btn.btn-small', { type: 'button', onclick: paste }, t('Paste')),
+      file),
+    () => pasting.value && h('div.paste-field', box,
+      h('p.button-row',
+        h('button.btn.btn-small', { type: 'button', onclick: () => fromText(box.value) }, t('Read it')),
+        h('button.btn.btn-small', { type: 'button', onclick: () => { pasting.value = false; } }, t('Cancel')))),
+    () => incoming.value && importPanel(incoming.value, {
+      onDone: (what) => { incoming.value = null; say(t('Imported {what}.', { what })); },
+      onCancel: () => { incoming.value = null; },
+    }),
+    () => status.value && h('p.small.backup-status', { role: 'status' }, status.value));
 }
 
 function advanced() {
@@ -225,6 +312,7 @@ function advanced() {
   };
   return h('details.settings-group.advanced',
     h('summary', h('h2', t('Advanced')), icon('chevron-down', 'advanced-chevron')),
+    backupRow(),
     h('div.setting',
       h('div.setting-text', h('span.setting-name', t('Version'))),
       h('div.setting-control.setting-value', d ? label(d) : t('development (unbuilt)'))),

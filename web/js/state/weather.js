@@ -7,8 +7,12 @@
 //   const wx = placeWeather(place);    // in a view: stops with the view
 //   wx.forecast.value                  // { data, at, error, loading }
 //   wx.refresh({ force: true })
+//
+// Only the sources something on screen uses are fetched ([wanted]: the
+// cards that are switched on); one that's wanted again is fetched then, if
+// it's out of date. Their signals are there either way, with what's cached.
 
-import { signal, onCleanup } from '../core/signal.js';
+import { signal, effect, untrack, onCleanup } from '../core/signal.js';
 import { loadForecast, loadAir, loadMarine } from '../api/openmeteo.js';
 import { fetchAlerts } from '../api/alerts/registry.js';
 import { fetchObservation, hasObservations } from '../api/obs.js';
@@ -40,7 +44,11 @@ export const SOURCES = {
 
 const RETRY = 60e3;   // after a failed fetch of a scheduled source
 
-export function placeWeather(place, { now = () => Date.now() } = {}) {
+/**
+ * [wanted]: the source names to fetch, read in an effect so it can follow a
+ * signal (the settings); every source when it's left out.
+ */
+export function placeWeather(place, { now = () => Date.now(), wanted = null } = {}) {
   const ctrl = new AbortController();
   const wx = {};
   for (const [name, src] of Object.entries(SOURCES)) {
@@ -79,7 +87,7 @@ export function placeWeather(place, { now = () => Date.now() } = {}) {
       if (ctrl.signal.aborted) return;
       slot.value = { ...slot.peek(), error: e, loading: false };
     }
-    if (SOURCES[name].dueAt) arm(name);
+    if (SOURCES[name].dueAt && needed(name)) arm(name);
   }
 
   // Scheduled sources: one timer each, set for when they're next due.
@@ -90,26 +98,49 @@ export function placeWeather(place, { now = () => Date.now() } = {}) {
     const wait = Math.max(0, dueAt(name) - now());
     // Long waits are re-checked at least every 5 minutes (laptops sleep; clocks jump).
     timers[name] = setTimeout(() => {
-      if (document.visibilityState !== 'visible') return;   // the visibility handler picks it up
+      if (document.visibilityState !== 'visible' || !needed(name)) return;   // the visibility handler, or wanting it again, picks it up
       if (stale(name)) load(name); else arm(name);
     }, Math.min(wait, TICK));
   }
   const scheduled = Object.keys(wx).filter((n) => SOURCES[n].dueAt);
 
-  /** Fetch what's out of date (everything with force; one source with only). */
+  // What's fetched: what's wanted (a retry, [only], is always a card that's showing).
+  let want = new Set(Object.keys(wx));
+  const needed = (n) => want.has(n);
+
+  /** Fetch what's out of date (everything wanted with force; one source with only). */
   function refresh({ force = false, only = null } = {}) {
     const t = now();
-    return Promise.all(Object.keys(wx).filter((n) => (!only || n === only) && (force || stale(n, t))).map(load));
+    return Promise.all(Object.keys(wx).filter((n) => (only ? n === only : needed(n)) && (force || stale(n, t))).map(load));
   }
 
   const onVisible = () => {
     if (document.visibilityState !== 'visible') return;
     refresh();
-    for (const n of scheduled) if (!wx[n].peek().loading) arm(n);
+    for (const n of scheduled) if (needed(n) && !wx[n].peek().loading) arm(n);
   };
   document.addEventListener('visibilitychange', onVisible);
   const timer = setInterval(() => { if (document.visibilityState === 'visible') refresh(); }, TICK);
-  for (const n of scheduled) arm(n);
+  if (wanted) {
+    let first = true;
+    effect(() => {
+      const next = new Set([...wanted()].filter((n) => n in wx));
+      untrack(() => {
+        const added = [...next].filter((n) => !want.has(n));
+        want = next;
+        for (const n of scheduled) if (!needed(n)) clearTimeout(timers[n]);
+        // Switched back on: fetched now if it's out of date (the first time, the caller's refresh does it).
+        if (!first) {
+          for (const n of added) {
+            if (stale(n)) load(n);
+            else if (SOURCES[n].dueAt) arm(n);
+          }
+        }
+        first = false;
+      });
+    });
+  }
+  for (const n of scheduled) if (needed(n)) arm(n);
   onCleanup(() => {
     ctrl.abort();
     clearInterval(timer);

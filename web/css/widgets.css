@@ -117,18 +117,27 @@
 .chart .compass-letter { font-size: 11px; font-weight: 700; }
 .wind-arrow { fill: var(--accent); }
 
-/* Sun & moon */
+/* Sun and moon */
 .sun-arc { fill: none; stroke: #f4a62a; stroke-width: 2; stroke-dasharray: 4 4; }
 .sun-dot { fill: #f7c443; stroke: #f4a62a; stroke-width: 2; }
 .sun-times { display: flex; justify-content: space-between; margin-bottom: var(--sp-2); }
 .sun-times div { display: flex; flex-direction: column; font-size: 1.1rem; }
 .sun-times div:last-child { text-align: right; }
 .sun-times .muted { font-size: var(--fs-xs); }
-.moon { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-3); padding-top: var(--sp-3); border-top: 1px solid var(--border); }
-.moon .chart { width: 48px; flex: none; }
-.moon p { margin: 0; }
+.card-moon .sun-times { gap: var(--sp-2); }
+.card-moon .sun-times > div:not(.moon-now) { flex: none; white-space: nowrap; }
+.sun-times .moon-now { flex: 1; align-items: center; justify-content: flex-end; min-width: 0; font-size: var(--fs-sm); text-align: center; }
+.sun-times > div + .moon-now:last-child { align-items: flex-end; text-align: right; }
+.moon-arc { fill: none; stroke: var(--text-muted); stroke-width: 2; stroke-dasharray: 4 4; }
 .moon-dark { fill: #2b3350; stroke: #59628a; stroke-width: 1; }
 .moon-lit { fill: #eadfb4; }
+/* The next four phases, on a line from now. */
+.moon-timeline { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-1); margin: var(--sp-3) 0 0; padding: var(--sp-3) 0 0; border-top: 1px solid var(--border); list-style: none; }
+.moon-timeline::before { content: ""; position: absolute; top: calc(var(--sp-3) + 13px); left: 12.5%; right: 12.5%; border-top: 1px dashed var(--border-strong); }
+.moon-timeline li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; text-align: center; font-size: var(--fs-xs); }
+.moon-timeline .chart { width: 26px; margin-bottom: 2px; }
+.moon-timeline strong { font-weight: 600; }
+.moon-timeline strong, .moon-timeline span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .cloud-bar { fill: var(--text-muted); opacity: 0.6; }
 
@@ -218,7 +227,11 @@
   .radar-frame { height: 120px; }
   .radar-controls { margin-top: var(--sp-1); }
   .radar-play { width: 30px; height: 30px; }
-  .moon { margin-top: var(--sp-2); padding-top: var(--sp-2); }
+  .moon-timeline { margin-top: var(--sp-2); padding-top: var(--sp-2); }
+  .moon-timeline::before { top: calc(var(--sp-2) + 13px); }
+  .card-moon .sun-times > div:not(.moon-now) { font-size: 1rem; }
+  /* The sun's and moon's arcs, lower: drawn smaller, centered. */
+  .card-sun .card-body > .chart, .card-moon .card-body > .chart { height: 66px; }
   .meter { margin: var(--sp-2) 0; }
   /* Explanations only; the notes that credit a source stay. */
   .card-hourly .card-note, .card-nowcast .card-note { display: none; }
@@ -270,17 +283,20 @@ body.wallpaper .map-chips { display: none; }
   flex-direction: column;
   padding: 1px 4px;
   border-radius: 6px;
-  background: var(--card-solid);
+  /* See-through, with the map blurred behind so the text stays easy to read. */
+  background: color-mix(in srgb, var(--card-solid) 68%, transparent);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   color: var(--text);
   font-size: 12px;
   line-height: 15px;
   white-space: nowrap;
   text-decoration: none;
-  opacity: 0.92;
 }
 .map-label span:first-child { font-weight: 600; }
 .here-label { color: #ff7a5c; }
-a.map-label:hover { opacity: 1; box-shadow: 0 0 0 1px var(--accent); }
+a.map-label:hover { background: var(--card-solid); box-shadow: 0 0 0 1px var(--accent); }
+:root[data-theme="contrast"] .map-label { background: var(--card-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
 
 .rotate-btn { min-height: 28px; }
 .rotate-btn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
@@ -289,7 +305,7 @@ a.map-label:hover { opacity: 1; box-shadow: 0 0 0 1px var(--accent); }
 @keyframes rotate-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* The warnings bar (js/widgets/alert-bar.js): two lines, tinted by the warning in the hot seat. */
-.alert-bar { --sev: var(--sev-unknown); position: relative; padding: 0; border-left: 6px solid var(--sev); overflow: visible; }
+.alert-bar { --sev: var(--sev-unknown); position: relative; padding: 0; border-left: 6px solid var(--sev); overflow: visible; container: alert-bar / inline-size; }
 .alert-bar[data-severity="extreme"] { --sev: var(--sev-extreme); background: color-mix(in srgb, var(--sev-extreme) 28%, var(--card-solid)); }
 .alert-bar[data-severity="severe"] { --sev: var(--sev-severe); }
 .alert-bar[data-severity="moderate"] { --sev: var(--sev-moderate); }
@@ -297,15 +313,23 @@ a.map-label:hover { opacity: 1; box-shadow: 0 0 0 1px var(--accent); }
 .ab-main { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "top chevron" "body chevron"; align-items: center; gap: 2px var(--sp-3); width: 100%; padding: 6px var(--sp-3); border: 0; background: none; color: inherit; font: inherit; text-align: left; }
 button.ab-main { cursor: pointer; }
 .ab-top { grid-area: top; display: flex; align-items: center; gap: var(--sp-3); min-width: 0; height: 26px; overflow: hidden; }
-.ab-seat-wrap { flex: none; max-width: 60%; min-width: 0; }
+.ab-seat-wrap { flex: none; max-width: 60%; min-width: 0; overflow: hidden; }
 .ab-seat { display: flex; align-items: center; gap: var(--sp-2); min-width: 0; white-space: nowrap; }
-.ab-badge { padding: 1px 7px; border-radius: 5px; background: var(--sev); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.ab-badge { flex: none; padding: 1px 7px; border-radius: 5px; background: var(--sev); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
 .ab-seat[data-severity="moderate"] .ab-badge, .ab-seat[data-severity="minor"] .ab-badge { color: #1d1300; }
 .ab-seat[data-severity="extreme"] .ab-badge { background: var(--sev-extreme); }
 .ab-seat[data-severity="severe"] .ab-badge { background: var(--sev-severe); }
 .ab-seat[data-severity="moderate"] .ab-badge { background: var(--sev-moderate); }
 .ab-seat[data-severity="minor"] .ab-badge { background: var(--sev-minor); }
-.ab-event { font-weight: 700; }
+.ab-event { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-weight: 700; }
+/* A narrow bar (a phone, one column of cards): no area or time on the top line, and the
+   warning's name gives way to the waiting ones only as much as it has to. */
+@container alert-bar (max-width: 520px) {
+  .ab-where { display: none; }
+  .ab-seat-wrap { flex: 0 1 auto; max-width: none; }
+  .ab-queue { flex: 0 10 auto; }
+  .ab-chip { flex: 0 1 auto; min-width: 3em; overflow: hidden; text-overflow: ellipsis; }
+}
 .ab-where { overflow: hidden; text-overflow: ellipsis; color: var(--text-muted); font-size: var(--fs-sm); }
 .ab-queue { display: flex; gap: 6px; min-width: 0; margin: 0; padding: 0 0 0 var(--sp-3); border-left: 1px solid var(--border-strong); list-style: none; overflow: hidden; }
 .ab-chip { flex: none; padding: 1px 9px; border: 1px solid var(--border-strong); border-left: 4px solid var(--sev-unknown); border-radius: 999px; color: var(--text-muted); font-size: 12px; white-space: nowrap; }

@@ -46,7 +46,8 @@ export function dashboardView(r, { signal: abort, chrome }) {
   setTitle(placeLabel(place));
 
   const now = minuteClock(abort);
-  const wx = placeWeather(place);
+  // Only what the cards that are on use; the hero and the sky need the forecast.
+  const wx = placeWeather(place, { wanted: () => new Set(['forecast', ...widgetOrder(settings.value).filter((id) => !settings.value.hidden.includes(id) && WIDGET_IMPLS[id]).flatMap((id) => WIDGET_IMPLS[id].uses)]) });
 
   // A place from bare coordinates (a shared link, "lat,lon" typed in) has no
   // country yet, and the country picks the warning sources: look it up once.
@@ -111,9 +112,13 @@ export function dashboardView(r, { signal: abort, chrome }) {
     dynamic(() => hero(ctx({ live: true }).read(['forecast']))),
     dynamic(status));
 
-  // With no warnings in effect (known, not just not loaded yet), their card goes last.
+  // With no warnings in effect (known, not just not loaded yet), their card goes last
+  // (Settings › Move to the bottom when there are none; off: where it is in the order).
   const quiet = computed(() => wx.alerts.value.data?.alerts?.length === 0);
+  const quietLast = computed(() => quiet.value && settings.value.quietLast);
   const inEffect = computed(() => (wx.alerts.value.data?.alerts?.length || 0) > 0);
+  // Warnings as the one-line ticker (Settings › Warnings ticker: auto is the large-screen layout's).
+  const ticker = (wall) => { const v = settings.value.alertTicker; return v === 'always' || (v === 'auto' && wall); };
   // [extra]: more for the card's context (an object, or a function read inside its update).
   const card = (id, extra = {}) => {
     const w = WIDGET_IMPLS[id];
@@ -128,8 +133,8 @@ export function dashboardView(r, { signal: abort, chrome }) {
       () => settings.value.showMap && map);
     const grid = h('div.grid', () => {
       const ids = shown(settings.value);
-      if (quiet.value && ids.includes('warnings')) ids.push(...ids.splice(ids.indexOf('warnings'), 1));
-      return [heroCell, ...ids.map((id) => card(id))];
+      if (quietLast.value && ids.includes('warnings')) ids.push(...ids.splice(ids.indexOf('warnings'), 1));
+      return [heroCell, ...ids.map((id) => (id === 'warnings' ? card(id, () => ({ bar: ticker(false) })) : card(id)))];
     });
     onCleanup(masonry(grid));
     return grid;
@@ -142,9 +147,10 @@ export function dashboardView(r, { signal: abort, chrome }) {
    * the bottom at their natural size.
    */
   function wallLayout() {
-    // Warnings in effect: the thin bar across the top. Loading, couldn't check, or none:
-    // the usual card, last among the small cards.
-    const strip = () => inEffect.value && shown(settings.value).includes('warnings') && h('div.wall-alerts', card('warnings', { bar: true, wallpaper: wallpaperFromAddress }));
+    // Warnings in effect: across the top, as the ticker (unless it's set to Never). Loading,
+    // couldn't check, or none: the usual card among the small cards.
+    const warnCtx = () => ({ bar: ticker(true), wallpaper: wallpaperFromAddress });
+    const strip = () => inEffect.value && shown(settings.value).includes('warnings') && h('div.wall-alerts', card('warnings', warnCtx));
     // Hourly shows as many hours as read well in half the forecast tile.
     const timeSize = signal({ w: 0, h: 0 });
     const band = () => {
@@ -177,14 +183,14 @@ export function dashboardView(r, { signal: abort, chrome }) {
     const interactive = !wallpaperFromAddress;
     const smallIds = () => {
       const ids = shown(settings.value).filter((id) => !FEATURED.has(id) && (id !== 'warnings' || !inEffect.value));
-      // Quiet warnings: last, as in the usual layout.
-      if (ids.includes('warnings')) ids.push(...ids.splice(ids.indexOf('warnings'), 1));
+      // Loading or couldn't check: last. None: last too, unless set to stay in order.
+      if ((quietLast.value || !quiet.value) && ids.includes('warnings')) ids.push(...ids.splice(ids.indexOf('warnings'), 1));
       return ids;
     };
     const smallCard = (id) => {
       const w = WIDGET_IMPLS[id];
       return dynamic(() => {
-        const c = ctx().read(w.uses);
+        const c = Object.assign(ctx().read(w.uses), id === 'warnings' ? warnCtx() : {});
         return levelOf(id).value === 'compact' && COMPACT[id] ? COMPACT[id](c) : w.render(c);
       });
     };

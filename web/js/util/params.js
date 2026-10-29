@@ -29,6 +29,8 @@ export const PARAMS = {
   rotate: ['rotate', bool, (v) => (v ? '1' : '0')],
   dwell: ['dwell', (v) => (DWELLS.includes(Number(v)) ? Number(v) : int(5, 3600)(v)), String],
   radar: ['radarAutoplay', bool, (v) => (v ? '1' : '0')],
+  ticker: ['alertTicker', oneOf(['auto', 'always', 'never']), String],
+  quietlast: ['quietLast', bool, (v) => (v ? '1' : '0')],
 };
 // Custom units: temp=f, wind=kn ... (they also set units=custom).
 const UNIT_PARAMS = Object.keys(UNITS);

@@ -77,6 +77,17 @@ test('labels: no overlaps, inside the box, longest variant that fits', () => {
   assert.deepEqual(placeLabels([{ id: 'x', x: 5, y: 5, variants: [['Somewhere long']] }], 20, 20), {}, 'no room: dot only');
 });
 
+test('labels: raised or lowered beside the dot when centered would cover a neighbor', () => {
+  // A dot just below and to the right (as Jacksonville is to Longmont), a label already on the left.
+  const out = placeLabels([
+    { id: 'n', x: 120, y: 66, variants: [['Near']] },
+    { id: 'w', x: 50, y: 50, variants: [['West', '6° · 2:40 AM']] },
+    { id: 'a', x: 100, y: 50, variants: [['Longmont', '4° · 3:40 AM']] },
+  ], 400, 200, { measure: (lines) => ({ w: 60, h: lines.length * 15 + 2 }) });
+  assert.equal(out.a.side, 'right');
+  assert.ok(out.a.y + out.a.h <= 59, `raised clear of the dot below: ${out.a.y}`);
+});
+
 test('weather for several places in one request', () => {
   const u = new URL(snapshotUrl([{ lat: 1, lon: 2 }, { lat: 3, lon: 4 }]));
   assert.equal(u.searchParams.get('latitude'), '1,3');

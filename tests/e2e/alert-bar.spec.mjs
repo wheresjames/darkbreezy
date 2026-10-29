@@ -95,3 +95,63 @@ test('"Try it" in Settings opens the place last looked at', async ({ page }) => 
   await page.goto('./#/settings');
   await expect(page.getByLabel('Address for a wallpaper app')).toHaveValue(/#\/place\/40\.71,-74\.01\//);
 });
+
+// Settings › Warnings: the ticker auto/always/never, and whether the card goes last when there are none.
+const withSettings = (page, data) => page.addInitScript((d) => localStorage.setItem('darkbreezy:settings', JSON.stringify({ v: 5, data: d })), data);
+const cardOrder = (page) => page.locator('.grid > .card').evaluateAll((els) => els.map((e) => e.dataset.widget));
+
+test('ticker Never: the full list across the top of the large-screen layout', async ({ page }) => {
+  await withSettings(page, { alertTicker: 'never' });
+  await page.setViewportSize({ width: 3440, height: 1300 });
+  await openPlace(page, 'nyc');
+  await expect(page.locator('.wall-alerts .card-warnings .alert')).toHaveCount(2);
+  await expect(page.locator('.alert-bar')).toHaveCount(0);
+});
+
+test('ticker Always: the bar in the usual layout too, a full row where the card would be', async ({ page }) => {
+  await withSettings(page, { alertTicker: 'always', layout: 'scroll' });
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await openPlace(page, 'nyc');
+  await expect(seat(page)).toHaveText('Tornado Warning');
+  expect((await cardOrder(page))[0]).toBe('warnings');
+  const [b, grid] = await Promise.all([page.locator('.grid > .alert-bar'), page.locator('.grid')].map((l) => l.boundingBox()));
+  expect(Math.abs(b.width - grid.width)).toBeLessThan(2);
+});
+
+test('warnings in effect: where the card is in the order; across the top of the large-screen layout', async ({ page }) => {
+  await withSettings(page, { order: ['hourly', 'daily', 'wind', 'warnings'] });
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await openPlace(page, 'nyc');
+  await expect(page.locator('.card-warnings .alert').first()).toBeVisible();
+  const ids = await cardOrder(page);
+  expect(ids.indexOf('warnings')).toBe(ids.indexOf('wind') + 1);
+  await page.setViewportSize({ width: 3440, height: 1300 });
+  await expect(page.locator('.wall-alerts .alert-bar')).toBeVisible();
+  await expect(page.locator('.instruments .card-warnings')).toHaveCount(0);
+});
+
+test('no warnings, not moved to the bottom: the card stays where it is in the order', async ({ page }) => {
+  await withSettings(page, { quietLast: false, order: ['hourly', 'warnings', 'daily'] });
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await openPlace(page, 'nairobi');   // GDACS only, nothing near Nairobi in the fixture
+  await expect(page.locator('.card-warnings')).toContainText('No warnings in effect.');
+  const ids = await cardOrder(page);
+  expect(ids.indexOf('warnings')).toBe(ids.indexOf('hourly') + 1);
+  // The large-screen layout too, among the small cards (Hourly is a feature tile there).
+  await page.setViewportSize({ width: 3440, height: 1300 });
+  // (The layout switches over a frame or two after the resize: asked again until it has.)
+  await expect.poll(() => page.locator('.instruments > .card').evaluateAll((els) => els[0]?.dataset.widget)).toBe('warnings');
+});
+
+test('the warnings settings: changed in Settings, and from the address', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await openPlace(page, 'nyc');
+  await expect(page.locator('.alert-bar')).toHaveCount(0);
+  await page.goto('./#/settings');
+  await page.getByRole('radiogroup', { name: 'Warnings ticker' }).getByRole('radio', { name: 'Always' }).check();
+  await page.goBack();
+  await expect(page.locator('.grid > .alert-bar')).toBeVisible();
+  await page.goto(`./?ticker=never${placeUrl('nyc')}`);
+  await expect(page.locator('.card-warnings .alert').first()).toBeVisible();
+  await expect(page.locator('.alert-bar')).toHaveCount(0);
+});

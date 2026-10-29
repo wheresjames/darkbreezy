@@ -176,3 +176,10 @@
 fieldset.setting-control, fieldset.widget-fields { border: 0; margin: 0; padding: 0; min-inline-size: 0; }
 .setting.from-url .setting-control, .settings-group.from-url .widget-list { opacity: 0.5; }
 .from-url-note { font-style: italic; }
+
+/* Back up and move (views/settings.js, views/import.js). */
+.paste-box { display: block; width: 100%; min-height: 6rem; margin-top: var(--sp-2); padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border-strong); border-radius: 10px; background: var(--bg); color: var(--text); font: var(--fs-sm) ui-monospace, monospace; resize: vertical; }
+.import-panel { display: flex; flex-direction: column; gap: var(--sp-2); margin-top: var(--sp-2); padding: var(--sp-3) var(--sp-4); border: 1px solid var(--accent); border-radius: var(--radius-sm); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.import-panel p { margin: 0; }
+.import-settings { display: flex; align-items: baseline; gap: var(--sp-2); }
+.import-page .import-panel { margin-top: var(--sp-4); }

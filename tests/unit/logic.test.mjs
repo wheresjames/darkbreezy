@@ -121,6 +121,14 @@ test('settings migration 2: "Next hours" moves after Hourly and Daily', async ()
   assert.deepEqual(DEFAULTS.order.slice(0, 4), ['warnings', 'hourly', 'daily', 'nowcast']);
 });
 
+test('settings migration 5: the moon card goes just after the sun, hidden if the sun was', async () => {
+  const { splitMoon } = await import('../../web/js/state/settings.js');
+  assert.deepEqual(splitMoon({ order: ['wind', 'sun', 'uv'], hidden: [] }), { order: ['wind', 'sun', 'moon', 'uv'], hidden: [] });
+  assert.deepEqual(splitMoon({ order: ['sun', 'uv'], hidden: ['sun'] }).hidden, ['sun', 'moon']);
+  assert.deepEqual(splitMoon({ order: ['moon', 'sun'], hidden: [] }).order, ['moon', 'sun'], 'already placed: left alone');
+  assert.deepEqual(splitMoon({ theme: 'dark' }), { theme: 'dark', order: undefined, hidden: undefined }, 'nothing saved: the defaults stand');
+});
+
 test('pollen: the worst plant first by its own scale, not by the raw count', () => {
   // Grass 30/m³ is High (grasses: 5, 20, 200); birch 40/m³ only Moderate (trees: 10, 50, 500).
   const ranked = pollenRanked({ birch: 40, grass: 30, alder: 0 });

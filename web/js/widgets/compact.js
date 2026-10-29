@@ -10,10 +10,10 @@
 import { h } from '../core/h.js';
 import { t } from '../core/i18n.js';
 import { fmt, fmtPrecip, fmtDistance, compass } from '../util/units.js';
-import { fmtTime, dateKey } from '../util/time.js';
+import { fmtTime, fmtDuration, fmtShortDate, dateKey } from '../util/time.js';
 import { uvCategory, usAqiCategory, euAqiCategory, aqiScale, pollenRanked, pressureTrend, visibilityLabel } from '../util/format.js';
-import { sunTimes } from '../util/sun.js';
-import { moonIllumination, phaseName } from '../util/moon.js';
+import { sunTimes, dayLength } from '../util/sun.js';
+import { moonIllumination, nextPhases, phaseName } from '../util/moon.js';
 import { nowcastSummary } from './summary.js';
 import { ahead, rowAt } from './common.js';
 import { midnight } from './sun.js';
@@ -63,10 +63,16 @@ export const COMPACT = {
     const f = ctx.wx.forecast?.data;
     const p = ctx.place;
     const day = sunTimes(midnight(ctx.now, f?.utcOffset ?? Math.round(p.lon / 15) * 3600) + 12 * 36e5, p.lat, p.lon);
-    const m = moonIllumination(ctx.now);
     const time = (ms) => (ms ? fmtTime(ms, ctx.tz, ctx.clock) : '–');
     const value = day.polarDay ? t('Up all day') : day.polarNight ? t('Down all day') : t('Rise {a} · Set {b}', { a: time(day.sunrise), b: time(day.sunset) });
-    return compactCard('sun', t('Sun'), value, `${phaseName(m.phase)} ${Math.round(m.fraction * 100)}%`);
+    return compactCard('sun', t('Sun'), value, t('{d} of daylight', { d: fmtDuration(dayLength(day)) }));
+  },
+
+  moon: (ctx) => {
+    const m = moonIllumination(ctx.now);
+    const full = nextPhases(ctx.now, 4).find((x) => x.phase === 0.5);
+    return compactCard('moon', t('Moon'), `${phaseName(m.phase)} ${Math.round(m.fraction * 100)}%`,
+      full && t('Full {date}', { date: fmtShortDate(full.t, ctx.tz) }));
   },
 
   uv: (ctx) => fc(ctx, 'uv', t('UV index'), (f) => {

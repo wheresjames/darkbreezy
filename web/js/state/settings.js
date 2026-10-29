@@ -17,18 +17,27 @@ export function moveAfter(list, id, after) {
   return out;
 }
 
-const stored = persisted('settings', {
-  version: 4,
-  defaults: DEFAULTS,
-  migrations: {
-    // 2: "Next hours" moved after Hourly and Daily.
-    2: (d) => (Array.isArray(d.order) ? { ...d, order: moveAfter(d.order, 'nowcast', 'daily') } : d),
-    // 3: wallpaper mode comes only from the address now (a saved switch left no way back).
-    3: (d) => ({ ...d, wallpaper: false }),
-    // 4: "Large-screen layout" and "Fit to the window" became one setting, Layout.
-    4: ({ wallMode, fit, ...d }) => ({ ...d, layout: layoutFrom(wallMode, fit) ?? 'auto' }),
-  },
+/** Settings migration 5: the moon got a card of its own, out of "Sun & moon": just after the sun's, and hidden with it. */
+export const splitMoon = (d) => ({
+  ...d,
+  order: Array.isArray(d.order) && d.order.includes('sun') && !d.order.includes('moon') ? d.order.flatMap((id) => (id === 'sun' ? ['sun', 'moon'] : [id])) : d.order,
+  hidden: Array.isArray(d.hidden) && d.hidden.includes('sun') && !d.hidden.includes('moon') ? [...d.hidden, 'moon'] : d.hidden,
 });
+
+/** The settings' storage version, and how older ones are brought up to it (also for imports, util/backup.js). */
+export const SETTINGS_VERSION = 5;
+export const MIGRATIONS = {
+  // 2: "Next hours" moved after Hourly and Daily.
+  2: (d) => (Array.isArray(d.order) ? { ...d, order: moveAfter(d.order, 'nowcast', 'daily') } : d),
+  // 3: wallpaper mode comes only from the address now (a saved switch left no way back).
+  3: (d) => ({ ...d, wallpaper: false }),
+  // 4: "Large-screen layout" and "Fit to the window" became one setting, Layout.
+  4: ({ wallMode, fit, ...d }) => ({ ...d, layout: layoutFrom(wallMode, fit) ?? 'auto' }),
+  // 5: the moon got a card of its own (splitMoon).
+  5: splitMoon,
+};
+
+const stored = persisted('settings', { version: SETTINGS_VERSION, defaults: DEFAULTS, migrations: MIGRATIONS });
 
 /** Deep-merge [patch] (plain objects merge; anything else replaces) over [base]. */
 export function overlay(base, patch) {

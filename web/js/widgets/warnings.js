@@ -46,8 +46,8 @@ export const warnings = {
       return loadingCard('warnings', title, 'wide');
     }
     const r = slot.data;
-    // The large-screen and wallpaper layouts: a thin bar (widgets/alert-bar.js).
-    if (ctx.bar && r.alerts.length) return alertBar(r.alerts, ctx, { interactive: !ctx.wallpaper });
+    // The ticker (Settings › Warnings ticker): a thin bar (widgets/alert-bar.js).
+    if (ctx.bar && r.alerts.length) return alertBar(r.alerts, ctx, { interactive: !ctx.wallpaper, cls: ['wide', 'no-fill'] });
     const body = [];
     // The country has its own source but it didn't answer: that's "couldn't check", not "none".
     const nationalFailed = !r.service && r.coverage !== 'national' && r.failed.length > 0;

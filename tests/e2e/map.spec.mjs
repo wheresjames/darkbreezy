@@ -10,8 +10,8 @@ test('the map shows the place as a beacon and the other favorites with their wea
   const map = page.locator('.card-map');
   await expect(map.locator('.map-beacon')).toHaveAttribute('aria-label', 'Berlin (shown now)');
   await expect(map.locator('.map-fav')).toHaveCount(3);
-  // Labels with temperature and high/low where there's room.
-  await expect(map.locator('.fav-label', { hasText: 'Tokyo' })).toContainText(/°.*·.*°\/.*°/);
+  // Labels with temperature and local time where there's room.
+  await expect(map.locator('.fav-label', { hasText: 'Tokyo' })).toContainText(/°.*·.*\d:\d{2}/);
   await expect(map.locator('.map-land')).toHaveAttribute('d', /^M/);
   // Click a place: its dashboard.
   await map.getByRole('link', { name: /Show Tokyo/ }).click();

@@ -25,6 +25,7 @@ const lazy = (load, name) => () => load().then((m) => m[name]);
 const searchView = lazy(() => import('./views/search.js'), 'searchView');
 const settingsView = lazy(() => import('./views/settings.js'), 'settingsView');
 const aboutView = lazy(() => import('./views/about.js'), 'aboutView');
+const importView = lazy(() => import('./views/import.js'), 'importView');
 
 const ROUTES = [
   { name: 'home', path: '/', view: () => dashboardView },
@@ -33,6 +34,7 @@ const ROUTES = [
   { name: 'search', path: '/search', view: searchView },
   { name: 'settings', path: '/settings', view: settingsView },
   { name: 'about', path: '/about', view: aboutView },
+  { name: 'import', path: '/import/:data', view: importView },
 ];
 const VIEWS = new Map(ROUTES.map((r) => [r.name, r]));
 

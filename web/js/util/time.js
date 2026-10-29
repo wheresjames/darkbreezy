@@ -38,8 +38,10 @@ export function fmtHour(ms, tz, clock) {
 export const fmtWeekday = (ms, tz) => formatter(tz, { weekday: 'short' }).format(ms);
 /** "Wednesday, 28 October" */
 export const fmtLongDate = (ms, tz) => formatter(tz, { weekday: 'long', day: 'numeric', month: 'long' }).format(ms);
+/** "28 Oct" */
+export const fmtShortDate = (ms, tz) => formatter(tz, { day: 'numeric', month: 'short' }).format(ms);
 /** "28 Oct, 15:45" */
-export const fmtDateTime = (ms, tz, clock) => `${formatter(tz, { day: 'numeric', month: 'short' }).format(ms)}, ${fmtTime(ms, tz, clock)}`;
+export const fmtDateTime = (ms, tz, clock) => `${fmtShortDate(ms, tz)}, ${fmtTime(ms, tz, clock)}`;
 
 /** The calendar date at [ms] in [tz], as "YYYY-MM-DD". */
 export function dateKey(ms, tz) {
